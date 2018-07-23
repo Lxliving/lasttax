@@ -11,8 +11,26 @@ import com.tax.vo.consult;
 public class DB_category {
 	public DB_category() {}
 	DBUtil db = new DBUtil();
+	public void addUserCate(String userID,String cate) {
+		//添加用户特长分类子方法
+		PreparedStatement pstm = null;
+		String sql = "insert into user_cate (userID,cateName) values(?,?)";
+		try {
+			pstm = db.getConPst(sql);
+			pstm.setString(1,userID);
+			pstm.setString(2,cate);
+			pstm.executeQuery();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DBUtil.close(pstm, null);
+		}
+	}
+	
 	
 	public void addCate(int consID,String cateName) {
+		//为咨询添加一个新的类别
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
