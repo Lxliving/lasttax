@@ -4,11 +4,15 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String username =(String)request.getSession().getAttribute("username");
+boolean guanli = false;
+String name="admin";
+if(username==name){
+	guanli = true;
+}
 boolean hasLogined = false;
 if(username!=null){
 	hasLogined = true;
 }
-
 DB_read rea=new DB_read();
 ArrayList<read> arrRea = new ArrayList<read>();
 
@@ -203,7 +207,7 @@ body {
 		<div class="c_s_header">
 			<div class="lists">
 				<div class="ex_main_left_content_header">
-      <!--  <a class="sharetation"  href="webPages/posts/post_share" target="_blank"> + 发布</a> -->  
+     <%    if(guanli)out.println("<a class=\"sharetation\"  href=\"webPages/posts/post_share.jsp\" target=\"_blank\"> + 发布</a>"); %>
 					<ul style="background: none">
 						<li><span>专业解读</span></li>
 					</ul>

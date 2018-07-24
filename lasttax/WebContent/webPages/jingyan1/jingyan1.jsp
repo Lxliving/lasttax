@@ -8,7 +8,11 @@ boolean hasLogined = false;
 if(username!=null){
 	hasLogined = true;
 }
-
+boolean guanli = false;
+String name="admin";
+if(username==name){
+	guanli = true;
+}
 DB_share sha=new DB_share();
 ArrayList<share> arrSha = new ArrayList<share>();
 
@@ -204,6 +208,8 @@ body {
 		<div class="c_s_header">
 			<div class="lists">
 				<div class="ex_main_left_content_header">
+				     <%    if(guanli)out.println("<a class=\"sharetation\"  href=\"webPages/posts/post_share.jsp\" target=\"_blank\"> + 发布</a>"); %>
+				
 					<ul style="background: none">
 						<li><span>经验分享</span></li>
 					</ul>
