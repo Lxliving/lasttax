@@ -39,6 +39,7 @@ public class DB_ans {
 	}
 	
 	public ArrayList<answer> getAns(){
+		//输出所有的回答结果
 		ArrayList<answer> arr = new ArrayList<answer>();
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -54,7 +55,9 @@ public class DB_ans {
 				ans.setGood(rs.getInt("goodNum"));
 				ans.setKeep(rs.getInt("keptNum"));
 				ans.setTxt(rs.getString("txt"));
-				arr.add(ans);
+				if(rs.getInt("checked")==1) {
+					arr.add(ans);
+				}
 			}
 		}
 		catch(SQLException e) {
@@ -84,4 +87,24 @@ public class DB_ans {
 		}
 		return checked;
 	}
+	public int getConsultID(int ansID) {
+		//通过回答找到问题
+		PreparedStatement pstm = null;
+		String sql = "select consID from cons_ans where ansID = '"+ansID+"'";
+		int ID = 0;
+		try {
+			pstm = db.getConPst(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				ID = rs.getInt("consID");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			db.close(pstm, null);
+		}
+		return ID;
+	}
+	
 }

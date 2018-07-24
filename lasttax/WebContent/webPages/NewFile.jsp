@@ -10,6 +10,9 @@ if (username!= null){
 	hasLogin = true;
 }
 System.out.println(hasLogin);
+boolean guan =false;
+String name="admin";
+if(username==name)guan= true;
 %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -302,7 +305,8 @@ ul li {
 				<!-- <li>技术服务由科大讯飞股份有限公司提供</li>
 				<li>地址：合肥市xx区xx路xxxx号 邮编：xxxxxx</li>
 				<li>传真：xxxxx 电子邮件：xxxxx</li> -->
-				<li>安徽省国家税务局主办 ICP备案号********</li>
+				<li>安徽省国家税务局主办 ICP备案号********<span><% if(guan)out.println("<a href=\"webPages/guanli/houtai-3.jsp\" target=\"_blank\">网站管理</a>");%>
+				</span></li>
 				<li>技术服务由科大讯飞股份有限公司提供</li>
 				<li>通讯地址：合肥市包河区中山路3398号 联系电话：0551-12366</li>
 				<!-- <li>建议使用IE9以上浏览器，分辨率大于1024*768</li> -->

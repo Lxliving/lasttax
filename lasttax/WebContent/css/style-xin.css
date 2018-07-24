@@ -1007,7 +1007,19 @@ button{
 	padding-left: 2%;
 	width: 60%;
 }
-
+._5_dati_td1 button{
+    width: 1000px;
+    font-size:16px;
+    height: 20px;
+    overflow: hidden;
+    line-height: 20px;
+    margin: 6px auto;
+    color: black;
+    background:url() no-repeat;
+    border:none;
+    text-align:left;
+    cursor: pointer;
+}
 ._5_dati_td1 div {
 	width: 70%;
 }

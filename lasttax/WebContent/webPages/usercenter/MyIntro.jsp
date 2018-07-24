@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,com.tax.dao.*,com.tax.vo.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -233,18 +233,40 @@ System.out.println(hasLogin);
                     </ul>
                 </div>
                 <div class="tab_content Notdisplay" id="tab_content2">
+                <!-- 我的回答 -->
+                <% 
+                	DB_ans da = new DB_ans();
+                	ArrayList<answer> arr = da.getAns();
+                %> 
+                <%
+                	for(int i=0;i<arr.size();i++){
+                		out.println("<ul>");
+                		out.println("<li class=\"tab_content_li_1\">");
+                		out.println("<a href=\"\" class=\"tab_content_li_1_a\">");
+                		out.println("<span>问题：</span><span>所得税征收</span>");
+                		out.println("</a>");
+                		out.println("<span class=\"tab_content_li_1_date\">"+arr.get(i).getDate() +"</span>");
+                		out.println("</li>");
+                		out.println("<li style=\"width:100%;float:none;padding-top: 3%\"  class=\"chaochushenglve\" >");
+                		out.println(" <span>回答：</span><span>"+arr.get(i).getTxt()+"</span>");
+                		out.println("</li>");
+                		out.println("<li><span>浏览：</span><span>0</span></li>");
+                		out.println(" <li ><span>点赞：</span><span>"+arr.get(i).getGood()+"</span></li>");
+                		out.println("</ul>");
+                	}
+                %>
                     <ul>
                         <li class="tab_content_li_1">
                             <a href="" class="tab_content_li_1_a">
                                 <span>问题：</span><span>所得税征收</span>
                             </a>
-                            <span class="tab_content_li_1_date">2018-12-19</span>
+                            <span class="tab_content_li_1_date"><%arr.get(0).getDate(); %></span>
                         </li>
                         <li style="width:100%;float:none;padding-top: 3%"  class="chaochushenglve" >
-                            <span>回答：</span><span>关于研发活动直接相关的其他费用，增加了职工福利费、补充养老保险费、补充医疗保险费作为加计扣除项目，对于固定资产加速折旧、无形资产加速摊销可以按税前扣除金额进行加计扣除，扩大了计税基数，简便实务操作。</span>
+                            <span>回答：</span><span><%arr.get(0).getTxt(); %></span>
                         </li>
                         <li><span>浏览：</span><span>0</span></li>
-                        <li ><span>点赞：</span><span>0</span></li>
+                        <li ><span>点赞：</span><span><%arr.get(0).getGood(); %></span></li>
                     </ul>
                 </div>
 

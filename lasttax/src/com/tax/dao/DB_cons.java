@@ -31,7 +31,24 @@ public class DB_cons {
 		}
 	}
 	
-	
+	public int getConsID() {
+		//获取下个ID应该设置为多少
+		int ID = 0;
+		String sql = "select max(consID) from consult";
+		PreparedStatement pstm = null;
+		try {
+			pstm = db.getConPst(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				ID = rs.getInt("max(consID)");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.close(pstm, null);
+		}
+		return ID+1;
+	}
 	public void update(consult cons) {
 		//用以用户(提问者本身)修改咨询问题和内容
 		PreparedStatement pstm = null;

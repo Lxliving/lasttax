@@ -180,21 +180,21 @@ body {
 			<div class="xian2" style="width:9%"></div>
 		</div>
 		<div>
-			<form class="post_share_form">
+			<form class="post_share_form" action="addSharejiedu">
 				<div class="post_share_fenlei">
 					<p>选择类型：</p>
 					<select>
 					  <option  selected="selected" value=""  style="background-color: #EEEEEE;" disabled="disabled">请选择</option>
-					  <option value="jingyanfenxiang">经验分享</option>
-					  <option value="zhuanjiajiedu">专家解读</option>
+					  <option value="经验分享" name="type">经验分享</option>
+					  <option value="专家解读" name="type">专家解读</option>
 					</select>
 				</div>
 				<div class="clearfix"></div>
 				<div class="post_share_title">
 					<p>标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</p>
-					<input type="text">
+					<input type="text" name="posttitle">
 				</div>
-				<textarea id="editor" class="ckeditor"></textarea>
+				<textarea id="editor" class="ckeditor" name="posttxt"></textarea>
 				<button id="" type="submit" class="post_share_button">提交</button>			
 			</form>
 		</div>

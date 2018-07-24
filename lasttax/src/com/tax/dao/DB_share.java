@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -21,11 +23,18 @@ public class DB_share {
 	/**
 	 * @param sha
 	 * addshare 方法用于用户或者管理员向网站发布新的经验分享，并同步到数据库
+	 * @throws ParseException 
 	 */
-	public void addShare(share sha) {
+	public void addShare(share sha) throws ParseException {
+		//把java.unit.Date转成java.sql.Date
+				SimpleDateFormat bartDateFormat =new SimpleDateFormat("yyyy-MM-dd");  
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+			    String dateStringToParse=(df.format(sha.getDate()));// new Date()为获取当前系统时间  
+		        java.util.Date date = bartDateFormat.parse(dateStringToParse);  
+		        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		
 		PreparedStatement pstm = null;
-		String sql = " insert into share (shareID,shareName,seenNum,keptNum,date,text) values(?,?,?,?,?,?);";
+		String sql = " insert into share (shareID,shareName,seenNum,keptNum,date,text,checked) values(?,?,?,?,?,?,?);";
 		try {
 			pstm = db.getConPst(sql);
 			//设置参数
@@ -33,8 +42,9 @@ public class DB_share {
 			pstm.setString(2, sha.getShareName());
 			pstm.setInt(3, sha.getSeenNum());
 			pstm.setInt(4, sha.getKeptNum());
-			pstm.setDate(5,(Date)sha.getDate());
+			pstm.setDate(5,sqlDate);
 			pstm.setString(6, sha.getText());
+			pstm.setInt(7, sha.getCherked());
 			pstm.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -42,6 +52,27 @@ public class DB_share {
 			DBUtil.close(pstm, null);
 		}
 	}
+	
+	//获取id里最大的数（本身是int类型）
+		public int getMaxID() {
+			int maxID=1;
+			PreparedStatement pstm = null;
+			ResultSet rs = null;
+			try {
+				String sql = "select max(shareID) from share";
+				pstm = db.getConPst(sql);
+				//rs保存结果集
+				rs = pstm.executeQuery();
+				while(rs.next()) {
+					maxID=rs.getInt("max(shareID)");
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally{
+				DBUtil.close(pstm,null);
+			}
+			return maxID;
+		}
 	
 	
 	/**

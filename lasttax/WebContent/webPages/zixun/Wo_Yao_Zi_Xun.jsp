@@ -116,7 +116,7 @@ System.out.println(hasLogin);
 				<div class="pink"></div>
 			</div>
 			<div class="content_middle">
-				<form id="consultingShareForm" method="post" onsubmit="return save();" action="">
+				<form id="consultingShareForm" method="post" onsubmit="return save();" action="addConsult">
 					<div>
 						<div>
 							<input type="text" name="userId" id="userId" hidden="true">
@@ -149,53 +149,77 @@ System.out.println(hasLogin);
 							</div>
 							<div class="select_btn">
 							<ul>
+								<li><label><input id = "zhidao" type="checkbox" class="option" name = "zhidao"
+										 value="040001">发票系统故障及操作指导</label>
+				
+								<label><input id = "linggou" type="checkbox" class="option" name = "linggou"
+										 value="040002">发票领购</label></li>
+				
+								<li><label><input type="checkbox" class="option" name = "daikai"
+										 value="040003">发票代开</label>
+										
+								<label><input type="checkbox" class="option"	name = "kaiju"
+										 value="040004">发票开具</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "hongzi"
+										 value="040005">红字增值税发票开具</label>
+				
+								<label><input type="checkbox" class="option"	name = "zuofei"
+										 value="040006">申报有误能否作废</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "zige"
+										 value="040007">一般纳税人资格</label>
+				
+								<label><input type="checkbox" class="option"	name = "fudao"
+										 value="040008">辅导期一般纳税人</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "dikou"
+										 value="040009">专用发票认证抵扣</label>
+				
+								<label><input type="checkbox" class="option"	name = "tiaozheng"
+										 value="040010">小规模纳税人增值税起征点是否有调整</label>
+								</li>
+				
+								<li><label><input type="checkbox" class="option"	name = "rending"
+										 value="040011">认定为一般纳税人之后是否可以转为小规模纳税人</label>
 								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040001">发票系统故障及操作指导</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040002">发票领购</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040003">发票代开</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040004">发票开具</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040005">红字增值税发票开具</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040006">申报有误能否作废</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040007">一般纳税人资格</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040008">辅导期一般纳税人</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040009">专用发票认证抵扣</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040010">小规模纳税人增值税起征点是否有调整</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040011">认定为一般纳税人之后是否可以转为小规模纳税人</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040012">小规模纳税人自行开具的增值税专用发票如何填写申报表</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040013">注销登记</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040014">发票检查</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040015">专用发票丢失</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040016">征收率</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040017">非国税业务</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040018">信用等级</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040019">营改增</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040020">金税管理</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040021">进出口税收</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040022">征收管理</label>
-								
-									<label><input type="checkbox" class="major_item" onclick="selectedMajor();" name="majorCategory" value="040023">发票保管</label>
-								
+								<label><input type="checkbox" class="option"	name = "baobiao"
+										 value="040012">小规模纳税人自行开具的增值税专用发票如何填写申报表</label>
+								</li>
+				
+								<li><label><input type="checkbox" class="option"	name = "zhuxiao"
+										 value="040013">注销登记</label>
+				
+								<label><input type="checkbox" class="option"	name = "jiancha"
+										 value="040014">发票检查</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "diushi"
+										 value="040015">专用发票丢失</label>
+				
+								<label><input type="checkbox" class="option"	name = "zhengshoulv"
+										 value="040016">征收率</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "yewu"
+										 value="040017">非国税业务</label>
+				
+								<label><input type="checkbox" class="option"	name = "dengji"
+										 value="040018">信用等级</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "yinggaizeng"
+										 value="040019">营改增</label>
+				
+								<label><input type="checkbox" class="option"	name = "jinshui"
+										 value="040020">金税管理</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "jinchukou"
+										 value="040021">进出口税收</label>
+				
+								<label><input type="checkbox" class="option"	name = "zhengshou"
+										 value="040022">征收管理</label></li>
+				
+								<li><label><input type="checkbox" class="option"	name = "baoguan"
+										 value="040023">发票保管</label></li>
+												
 							</ul>
 							</div>
 						</div>
@@ -227,7 +251,7 @@ System.out.println(hasLogin);
 						<div class="add_content clearfix">
 							<div class="text_area">
 								<!-- <textarea name="content" id="content" class="fl" style="height:180px;"></textarea> -->
-								<textarea id="editor" class="ckeditor"></textarea>
+								<textarea id="editor" name = "detil" class="ckeditor"></textarea>
 							</div>
 						</div>
 						<div class="sub" style="margin-bottom:50px;">

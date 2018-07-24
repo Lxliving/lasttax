@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import ="java.util.*,com.tax.controller.*,com.tax.dao.*,com.tax.vo.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,6 +11,13 @@ if (username!= null){
 	hasLogin = true;
 }
 System.out.println(hasLogin);
+
+DB_ans ans=new DB_ans();
+ArrayList<answer> arrAns = new ArrayList<answer>();
+
+arrAns =ans.getAns();
+int size=arrAns.size();
+System.out.print(size);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -732,115 +740,32 @@ body {
 		<div class="_5_dati">
 			<p class="_5_dati_title">答题动态</p>
 			<table class="_5_dati_list">
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>&nbsp;</div></a></td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="_5_dati_td1"><a href=""><div>hhhhhh呵呵哈哈哈</div></a>
-					</td>
-					<td class="_5_dati_td2"><a href="webPages/userarea/personIntro.jsp"> <img
-							src="image/u2815.png" alt="picture">
-					</a></td>
-					<td class="_5_dati_td3"><a href="webPages/userarea/personIntro.jsp"> 管理员Q </a></td>
-					<td class="_5_dati_td4">
-						<p>2018-07-05</p>
-					</td>
-				</tr>
+				<% 
+				String txt;
+				int ansID;
+				Date date;
+				String userID;
+				
+				for(int i=0;i<size;i++){
+					
+					txt=arrAns.get(i).getTxt();
+					ansID=arrAns.get(i).getAnsID();
+					date =arrAns.get(i).getDate();
+					userID=arrAns.get(i).getUserID();
+				out.println("<form  id=\"submitQes\" action=\"showanswercontent\" method=\"post\">");
+				out.println("<tr><td class=\"_5_dati_td1\">\n");
+				 out.println("<input id=\""+ansID+ "\" type=\"hidden\" class=\"quest\" name=\"ansID\" value=\""+ansID+"\">" );
+				 out.println("<button type=\"submit\"  class=\"quest\"  href=\"webPages/zixun/question_model.jsp\">" +txt+"</button></td>\n");
+
+				out.println("<td class=\"_5_dati_td2\"><a href=\"webPages/userarea/personIntro.jsp\"> \n");
+				out.println("	<img src=\"image/u2815.png\" alt=\"picture\"></a></td>\n");
+				out.println("<td class=\"_5_dati_td3\"><a href=\"webPages/userarea/personIntro.jsp\"> "+userID+"</a></td>\n");
+				out.println("<td class=\"_5_dati_td4\">\n");
+				out.println("<p>"+date+"</p></td></tr>\n");
+				out.println("</form>");
+				
+				}
+				%>
 			</table>
 
 		</div>

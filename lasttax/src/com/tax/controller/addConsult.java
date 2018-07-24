@@ -51,10 +51,12 @@ public class addConsult extends HttpServlet {
 		cons.setConsName(request.getParameter("title"));
 		cons.setConsDetail(request.getParameter("detil"));
 		cons.setCheck(0);
+		cons.setXuanNum(0);
 		java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
 		cons.setDate(currentDate);
 		dc.addCons(cons);
 		
+		System.out.println(cons.getConsID() + " " + cons.getConsDetail() + " " + cons.getConsName());
 		DB_category dca = new DB_category();
 		
 		String zhidao = request.getParameter("zhidao");
