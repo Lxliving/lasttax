@@ -183,10 +183,10 @@ body {
 			<form class="post_share_form" action="addSharejiedu">
 				<div class="post_share_fenlei">
 					<p>选择类型：</p>
-					<select>
-					  <option  selected="selected" value=""  style="background-color: #EEEEEE;" disabled="disabled">请选择</option>
-					  <option value="经验分享" name="type">经验分享</option>
-					  <option value="专家解读" name="type">专家解读</option>
+					<select name="type" >
+					  <option  selected="selected" value="wo"  style="background-color: #EEEEEE;" disabled="disabled">请选择</option>
+					  <option value="share1" >经验分享</option>
+					  <option value="jiedu2" >专业解读</option>
 					</select>
 				</div>
 				<div class="clearfix"></div>

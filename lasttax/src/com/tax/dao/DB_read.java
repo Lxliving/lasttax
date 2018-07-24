@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.tax.comm.*;
@@ -18,9 +20,16 @@ public class DB_read {
 	
 	DBUtil db = new DBUtil();
 	
-	public void addRead(read rea) {
+	public void addRead(read rea) throws ParseException {
+		//把java.unit.Date转成java.sql.Date
+		SimpleDateFormat bartDateFormat =new SimpleDateFormat("yyyy-MM-dd");  
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+	    String dateStringToParse=(df.format(rea.getDate()));// new Date()为获取当前系统时间  
+        java.util.Date date = bartDateFormat.parse(dateStringToParse);  
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
 		PreparedStatement pstm = null;
-		String sql = "insert into reader(readID,readName,seenNum,,keptNum,date,text) values (?,?,?,?,?,?)";
+		String sql = "insert into reader (readID,readName,seenNum,keptNum,date,text,checked) values (?,?,?,?,?,?,?)";
 		try {
 			pstm = db.getConPst(sql);
 			//设置参数
@@ -28,8 +37,9 @@ public class DB_read {
 			pstm.setString(2, rea.getReadName());
 			pstm.setInt(3, rea.getSeenNum());
 			pstm.setInt(4, rea.getKeptNum());
-			pstm.setDate(5,(Date)rea.getDate());
+			pstm.setDate(5,sqlDate);
 			pstm.setString(6, rea.getText());
+			pstm.setInt(7, rea.getChecked());
 			pstm.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -64,7 +74,7 @@ public class DB_read {
 		ResultSet rs = null;
 		PreparedStatement pstm = null;
 		try {
-			String sql = "select * from reader where shareName = '"+ readName;
+			String sql = "select * from reader where shareName = '"+ readName+"'";
 			pstm = db.getConPst(sql);
 			//rs保存结果集
 			rs = pstm.executeQuery();
@@ -133,6 +143,28 @@ public class DB_read {
 			DBUtil.close(pstm, null);
 		}
 		return al;
+	}
+
+    //获取最大的readID
+	public int getMaxID() {
+		// TODO Auto-generated method stub
+		int maxID=1;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select max(readID) from reader";
+			pstm = db.getConPst(sql);
+			//rs保存结果集
+			rs = pstm.executeQuery();
+			while(rs.next()) {
+				maxID=rs.getInt("max(readID)");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(pstm,null);
+		}
+		return maxID;
 	}
 	
 }

@@ -11,6 +11,20 @@ public class read {
 	private int keptNum;
 	private Date date;				//in mysql parameter 'data' has its own format
 	private String text;
+	private int checked;
+	
+	public read() {
+	
+	}
+	public read(int readID,String readName,int seenNum,int keptNum,Date date,String text,int checked) {
+		this.readID=readID;
+		this.readName=readName;
+		this.seenNum=seenNum;
+		this.keptNum=keptNum;
+		this.date=date;
+		this.text=text;
+		this.checked=checked;
+	}
 	
 	public String getText() {
 		return text;
@@ -58,6 +72,12 @@ public class read {
 
 	public void setReadID(int readID) {
 		this.readID = readID;
+	}
+	public int getChecked() {
+		return checked;
+	}
+	public void setChecked(int checked) {
+		this.checked = checked;
 	}
 	
 }

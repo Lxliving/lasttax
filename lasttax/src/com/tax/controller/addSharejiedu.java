@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tax.dao.DB_answer;
+import com.tax.dao.DB_read;
 import com.tax.dao.DB_share;
 import com.tax.vo.answer;
+import com.tax.vo.read;
 import com.tax.vo.share;
 
 /**
@@ -52,7 +54,10 @@ public class addSharejiedu extends HttpServlet {
 		String userID =(String) request.getSession().getAttribute("username");
 		System.out.println("post"+userID);
 		String type=request.getParameter("type");
-		if (type=="经验分享") {
+		System.out.println("1"+type);
+		if (type.equals("share1")) {
+			System.out.println("2"+type);
+			System.out.println("choose jingyan1");
 			String posttitle = request.getParameter("posttitle"); 
 			String posttxt = request.getParameter("posttxt"); 
 			String txt = "";    
@@ -65,7 +70,7 @@ public class addSharejiedu extends HttpServlet {
 			DB_share dbs=new DB_share();
 		    //获取最大andID值
 		    int preID=dbs.getMaxID();
-		    share sha=new share(preID+1,posttitle,0,0,date,txt,1);
+		    share sha=new share(preID+1,posttitle,0,0,date,txt,0);
 		    try {
 				dbs.addShare(sha);
 			} catch (ParseException e) {
@@ -73,7 +78,9 @@ public class addSharejiedu extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else {//专家解读 
+		else if(type.equals("jiedu2")){//专业解读 
+			System.out.println("3"+type);
+			System.out.println("choose jiedu2");
 			String posttitle = request.getParameter("posttitle"); 
 			String posttxt = request.getParameter("posttxt"); 
 			String txt = "";    
@@ -83,12 +90,12 @@ public class addSharejiedu extends HttpServlet {
 		    Date date=new Date();
 			
 			//数据库增加fenxiang
-			DB_share dbs=new DB_share();
+			DB_read dbr=new DB_read();
 		    //获取最大andID值
-		    int preID=dbs.getMaxID();
-		    share sha=new share(preID+1,posttitle,0,0,date,txt,1);
+		    int preID=dbr.getMaxID();
+		    read rea=new read(preID+1,posttitle,0,0,date,txt,0);
 		    try {
-				dbs.addShare(sha);
+				dbr.addRead(rea);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
