@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import ="java.util.*,com.tax.controller.*,com.tax.dao.*,com.tax.vo.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,6 +11,9 @@ if (username!= null){
 	hasLogin = true;
 }
 System.out.println(hasLogin);
+
+read arrR =new read();
+arrR=(read)request.getSession().getAttribute("readContent");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -29,16 +33,16 @@ System.out.println(hasLogin);
 <link rel="stylesheet" href="css/zeroModal.css" />
 <link rel="stylesheet" href="css/ScreenChange.css" />
 <style type="text/css">
-#three {
+#four {
 	border-bottom: 1px solid #fff;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 	color: #fff;
 	display: inline-block;
 	width: 90%;
-	height: 65%;
+	height: 60%;
 }
 
-#threeplus {
+#fourplus {
 	background: #1B55A9;
 }
 
@@ -116,27 +120,10 @@ body {
 				out.println("</div>\n");
 				out.println("</div>\n");
 			}
-		
 		%>
-		<!-- 
-			<a href="webPages/jiedu/login.jsp" style="padding: 0 50px;"> <img
-				src="image/header/u198.png" class="person">
-			</a>
-			<div style="position: absolute; left: 20px; line-height: 0px;">
-				<div style="line-height: 13px;">
-					<a href="webPages/jiedu/login.jsp">登录</a>
-				</div>
-				<div style="line-height: 13px;">&nbsp;/&nbsp;</div>
-				<div style="text-align: left; line-height: 13px;">
-					<a href="webPages/jiedu/register.jsp">注册</a>
-				</div>
-			</div>
-		-->
 		</div>
 	</div>
 	</div>
-
-
 	<script>
         $(function(){
            $(".user_text").hover(function(){
@@ -179,43 +166,65 @@ body {
 </html>
 <div class="shuiwu_main">
 	<!-- path -->
-	<div class="path_nav">
+	<div class="path_nav">  
+<%
+            int ReadID;
+			Date Date;
+			String ReadName;
+			int SeenNum;
+			int KeptNum;
+			String Text;
+			
+			
+				 ReadID = arrR.getReadID();
+				 Date =arrR.getDate();
+				 ReadName =arrR.getReadName();
+				 SeenNum=arrR.getSeenNum();
+				 KeptNum =arrR.getKeptNum();	
+				 Text=arrR.getText();
 
+				 out.println("<ul class=\"jiedu\">\n");
+				 out.println("<li class=\"f1\" style=\"width:560px;\">\n");
+				 out.println("<span>当前位置:<a href=\"javascript:history.go(-1);\"class=\"nav_style\">专业解读</a></span>\n");
+				 out.println("<span>&nbsp;&gt;&nbsp;</span>\n");
+				 out.println("<span><a href=\"webPages/posts/post.jsp\"class=\"nav_style\">"+ReadName+"</a></span>\n");
+				 out.println("</li>\n");
+				 out.println("</ul>\n");
+				 out.println("<ul class=\"content\">\n");
+				 out.println("<li class=\"content_title\">\n");
+				 out.println("<span>"+ReadName+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("</ul>\n");
+				 out.println("<ul class=\"uesr_who fl\">\n");
+				 out.println("<li>\n");
+				 out.println("<span style=\"color: black;\" class=\"user_name\">\n");
+				 out.println("<a href=\"webPages/userarea/personIntro.jsp\">admin</a>\n");
+				 out.println("</span>\n");
+				 out.println("<span>发布</span>\n");
+				 out.println("</li>\n");
+				 out.println("<li>\n");
+				 out.println("<span>时间：</span>\n");
+				 out.println("<span>"+Date+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("<li>\n");
+				 out.println("<span>浏览量：</span>\n");
+				 out.println("<span>"+SeenNum+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("<li>\n");
+				 out.println("<span>收藏：</span>\n");
+				 out.println("<span>"+KeptNum+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("</ul>\n");
+				 out.println("<hr/>\n");
+				 out.println("<ul class=\"article\">\n");
+				 out.println("<li style=\"padding: 20px, 50px;\">"+Text+"</li>\n");
+				 out.println("</ul>\n");
+			
+			%>
 
-		<span class="fl">当前位置：<a href="javascript:history.go(-1);"
-			class="nav_style">经验分享</a></span> <span class="fl">&nbsp;&gt;&nbsp;</span> <span
-			class="fl"><a href="javascript:location.reload();"
-			class="nav_style">分享车船税</a></span>
-	</div>
-	<div class="content">
-		<div class="content_title">
-			<span>分享车船税</span>
-		</div>
-		<div class="uesr_who fl">
-			<div class="nani">
-				<span style="color: black;" class="uder_name"><a
-					href="webPages/userarea/personIntro.jsp">管理员</a></span> <span>发布</span>
-			</div>
-			<div class="nani">
-				时间： <span>2017-12-17</span>
-			</div>
-			<div class="nani">
-				浏览量： <span>20</span>
-			</div>
-			<div class="nani">
-				收藏： <span>2</span>
-			</div>
-		</div>
-
-	</div>
-	<hr />
-	<div class="article">
-		<div style="padding: 0 50px;">
-			<p>车船税的缴纳</p>
-
-		</div>
 	</div>
 </div>
+
 <!-- 弹出修改详细信息窗口 start -->
 <div class="ex_shuiwu_PopWinbg">
 	<div class="ex_shuiwu_PopWinContent">
@@ -228,14 +237,14 @@ body {
 				<tr>
 					<td style="width: 50px; height: 75px;">标题：</td>
 					<td><input id="title" type="text" name="title"
-						style="width: 100%; height: 45%; font-size: 20px;" value="分享车船税">
+						style="width: 100%; height: 45%; font-size: 20px;" value="焦点问题的意见">
 						<input name="id" type="hidden" style="width: 0%; height: 0%;"
-						value="post_1513478006486"></td>
+						value="post_1475754962616"></td>
 				</tr>
 				<tr>
 					<td style="width: 50px;">内容：</td>
-					<td><textarea id="editor" name="content"><p>车船税的缴纳</p>
-</textarea></td>
+					<td><textarea id="editor" name="content">反驳对方当事人关于争议焦点问题的意见。</textarea>
+					</td>
 				</tr>
 			</table>
 		</form>
@@ -246,6 +255,7 @@ body {
 		<div class="ex_shuiwu_Close_PopWin" onclick="closePopWin()"></div>
 	</div>
 </div>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -15,7 +15,7 @@
 .content {
 	width: 1200px;
 	margin: 0 auto;
-	height: 100px;
+	height: 55px;
 }
 
 .content_title {
@@ -32,7 +32,7 @@
 
 .uesr_who {
 	width: 700px;
-	height: 20px;
+	height: 40px;
 	margin-top: 15px;
 	display: flex;
 	justify-content: space-around;
@@ -47,12 +47,25 @@
 	width: 250px;
 }
 
-.uder_name {
+.user_name {
 	color: blue;
 }
 
+hr {
+	width:1400px;
+    display: block;
+    unicode-bidi: isolate;
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
 .article {
-	line-height: 30px;
+	float:left;
+	line-height: 15px;
 	margin: 10px auto;
 	text-indent: 2em;
 }

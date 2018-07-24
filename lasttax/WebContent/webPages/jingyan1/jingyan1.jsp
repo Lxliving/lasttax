@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import ="java.util.*,com.tax.controller.*,com.tax.dao.*,com.tax.vo.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -7,6 +8,12 @@ boolean hasLogined = false;
 if(username!=null){
 	hasLogined = true;
 }
+
+DB_share sha=new DB_share();
+ArrayList<share> arrSha = new ArrayList<share>();
+
+arrSha =sha.Query();
+int size=arrSha.size();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -49,6 +56,7 @@ body {
 	min-height: 900px;
 	background: #eee;
 }
+
 </style>
 </head>
 <body>
@@ -196,152 +204,59 @@ body {
 		<div class="c_s_header">
 			<div class="lists">
 				<div class="ex_main_left_content_header">
-
 					<ul style="background: none">
-
-
-
 						<li><span>经验分享</span></li>
-
-
 					</ul>
 				</div>
 				<div id="exSharingContainer">
 					<div class="exSharingContent">
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1513478006486.jsp">分享车船税</a></li>
-									<li style="float: right;">2017-12-17</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 17</span></li>
-									<li><span>收藏：</span> <span class="starCount">2</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1513478121849.jsp">纳税人缴纳个人税</a></li>
-									<li style="float: right;">2017-12-17</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 14</span></li>
-									<li><span>收藏：</span> <span class="starCount">0</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1513478785301.jsp">经验分享1</a></li>
-									<li style="float: right;">2017-12-17</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 2</span></li>
-									<li><span>收藏：</span> <span class="starCount">0</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1513479111976.jsp">经验分享2</a></li>
-									<li style="float: right;">2017-12-17</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 3</span></li>
-									<li><span>收藏：</span> <span class="starCount">0</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1513479223282.jsp">税务问题</a></li>
-									<li style="float: right;">2017-12-17</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 2</span></li>
-									<li><span>收藏：</span> <span class="starCount">0</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1513562598456.jsp">经验分享车船税</a></li>
-									<li style="float: right;">2017-12-18</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 0</span></li>
-									<li><span>收藏：</span> <span class="starCount">0</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
-						<ul class="ex_main_left_content_ul uls clearfix">
-							<li class="center_top">
-								<ul>
-									<li style="padding-left: 20px"><a
-										href="webPages/posts/post_1525945371366.jsp">经验分享测试</a></li>
-									<li style="float: right;">2018-05-10</li>
-								</ul>
-							</li>
-							<li class="center_bottom">
-								<ul style="background: none">
-									<li><span>浏览：</span> <span> 2</span></li>
-									<li><span>收藏：</span> <span class="starCount">0</span></li>
-									<li	onClick="star(this)" style="float:right;cursor:pointer;display:"block"">
-										<span class="star" >收藏</span>
-										<span class="has_star" style="display: none">已收藏</span></li>
-								</ul>
-							</li>
-						</ul>
-
+          
+ <%
+            int ShareID;
+			Date Date;
+			String ShareName;
+			int SeenNum;
+			int KeptNum;
+			String Text;
+			 for(int i=0;i<size;i++){
+				 ShareID = arrSha.get(i).getShareID();
+				 Date =arrSha.get(i).getDate();
+				 ShareName =arrSha.get(i).getShareName();
+				 SeenNum=arrSha.get(i).getSeenNum();
+				 KeptNum =arrSha.get(i).getKeptNum();	
+				 Text=arrSha.get(i).getText();
+				 out.println("<form  id=\"submitQes\" action=\"showShareContent\" method=\"post\">");
+				 out.println("<ul class=\"ex_main_left_content_ul uls clearfix\">\n");
+				 out.println("<li class=\"center_top\">\n");
+				 out.println("<ul>\n");
+				 out.println("<li style=\"padding-left: 20px\">\n");
+				 out.println("<input id=\""+ShareID+ "\" type=\"hidden\" class=\"quest\" name=\"shareID\" value=\""+ShareID+"\">" );
+				 out.println("<button type=\"submit\"  class=\"quest\"  href=\"webPages/posts/post1.jsp\">" +ShareName+"</button>\n");
+				 out.println("</li>\n");
+				 out.println("<li style=\"float:right;\" >\n");
+				 out.println("<span>"+Date+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("</ul>\n");
+				 out.println("</li>\n");
+				 out.println("<li class=\"center_bottom\">\n");
+				 out.println("<ul style=\"background: none\">\n");
+				 out.println("<li>\n");
+				 out.println("<span>浏览：</span>\n");
+				 out.println("<span>"+SeenNum+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("<li>\n");
+				 out.println("<span>收藏：</span>\n");
+				 out.println("<span class=\"starCount\">"+KeptNum+"</span>\n");
+				 out.println("</li>\n");
+				 out.println("<li	onClick=\"star(this)\"  style=\"float:right;cursor:pointer;display:block\">\n");
+				 out.println("<span class=\"star\"  >收藏</span>\n");
+				 out.println("<span class=\"has_star\" style=\"display: none\">已收藏</span></li>\n");
+				 out.println("</ul>");	
+				 out.println("</li>");	
+				 out.println("</ul>");
+				 out.println("</form>");
+			}	
+			%>
 					</div>
 					<div id="exSharingPage" class="box"></div>
 				</div>
@@ -472,9 +387,20 @@ body {
 				}
 			</script>
 
-
-
 <script type="text/javascript">
+function a(){
+				$.ajax({  
+            		url:"../../Java Resources/src/com/tax/controller/listShare.java",//servlet文件的名称
+            		type:"GET",
+            		success:function(e){
+            			alert("servlet调用成功！");
+            		}
+            	});
+				
+			}
+</script>
+<script type="text/javascript">
+
 var i=0;
 function star(obj){
 	var x=<%=hasLogined%>;
