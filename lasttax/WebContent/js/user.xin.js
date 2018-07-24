@@ -40,6 +40,7 @@ function chooseI(i) {
 
 //个人专区界面，tab的左右切换效果
 function chooseLorR(i) {
+	//下面是标题的切换
     var ask_title=document.getElementById('tab_li1');
     var answer_title=document.getElementById('tab_li2');
     var send_invite_title=document.getElementById('tab_li3');
@@ -48,6 +49,8 @@ function chooseLorR(i) {
     var shoucang_title=document.getElementById('tab_li6');
     var send_sixin_title=document.getElementById('tab_li7');
     var receive_sixin_title=document.getElementById('tab_li8');
+    
+    //下面是内容
     var ask=document.getElementById('tab_content1');
     var answer=document.getElementById('tab_content2');
     var send_invite=document.getElementById('tab_content3');
@@ -56,6 +59,9 @@ function chooseLorR(i) {
     var shoucang=document.getElementById('tab_content6');
     var send_sixin=document.getElementById('tab_content7');
     var receive_sixin=document.getElementById('tab_content8');
+    
+    //下面是更多链接
+    var more=document.getElementsByClassName('youxiu_up_more');
 
     if (i == 1){
         /*点击-提问*/
@@ -63,6 +69,8 @@ function chooseLorR(i) {
         ask.className="tab_content";
         answer_title.className="";
         answer.className="tab_content Notdisplay";
+        more[0].className="youxiu_up_more";
+        more[1].className="youxiu_up_more Notdisplay";
     }
     else if (i == 2){
         /*点击-回答*/
@@ -70,6 +78,8 @@ function chooseLorR(i) {
         answer.className="tab_content";
         ask_title.className="";
         ask.className="tab_content Notdisplay";
+        more[1].className="youxiu_up_more";
+        more[0].className="youxiu_up_more Notdisplay";
     }
     else if (i == 3){
         /*点击-发出的邀请*/
@@ -77,6 +87,8 @@ function chooseLorR(i) {
         send_invite.className="tab_content";
         receive_invite_title.className="";
         receive_invite.className="tab_content Notdisplay";
+        more[2].className="youxiu_up_more";
+        more[3].className="youxiu_up_more Notdisplay";
     }
     else if (i == 4){
         /*点击-收到的邀请*/
@@ -84,6 +96,8 @@ function chooseLorR(i) {
         receive_invite.className="tab_content";
         send_invite_title.className="";
         send_invite.className="tab_content Notdisplay";
+        more[3].className="youxiu_up_more";
+        more[2].className="youxiu_up_more Notdisplay";
     }
     else if (i == 5){
         /*点击-解读和分享*/
@@ -91,6 +105,8 @@ function chooseLorR(i) {
         jiedu_share.className="tab_content";
         shoucang_title.className="";
         shoucang.className="tab_content Notdisplay";
+        more[4].className="youxiu_up_more";
+        more[5].className="youxiu_up_more Notdisplay";
     }
     else if (i == 6){
         /*点击-收藏*/
@@ -98,6 +114,8 @@ function chooseLorR(i) {
         shoucang.className="tab_content";
         jiedu_share_title.className="";
         jiedu_share.className="tab_content Notdisplay";
+        more[5].className="youxiu_up_more";
+        more[4].className="youxiu_up_more Notdisplay";
     }
     else if (i == 7){
         /*点击-发出私信*/
@@ -105,6 +123,9 @@ function chooseLorR(i) {
         send_sixin.className="tab_content";
         receive_sixin_title.className="";
         receive_sixin.className="tab_content Notdisplay";
+        more[6].className="youxiu_up_more";
+        more[7].className="youxiu_up_more Notdisplay";
+
     }
     else if (i == 8){
         /*点击-收到私信*/
@@ -112,5 +133,8 @@ function chooseLorR(i) {
         receive_sixin.className="tab_content";
         send_sixin_title.className="";
         send_sixin.className="tab_content Notdisplay";
+        more[7].className="youxiu_up_more";
+        more[6].className="youxiu_up_more Notdisplay";
+
     }
 }
