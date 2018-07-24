@@ -46,7 +46,9 @@ public class listAnsUnderCons extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		int consID = Integer.parseInt(request.getParameter("ConsID"));
+		String consIDString = request.getParameter("consID");
+		int consID = Integer.parseInt(consIDString);
+		System.out.println(consID);
 		DB_cons dc = new DB_cons();
 		consult cons = dc.getByID(consID);
 		ArrayList<answer> res = dc.getAnsList(consID);
