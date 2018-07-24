@@ -88,21 +88,53 @@ arrAns=(ArrayList<answer>)request.getSession().getAttribute("arraylist");
 			</ul>
 		</div>
 		<div class="user">
-			<div class="user_content">	
-						<a style="padding: 0 50px;">
-							<img alt="" src="image/header/u198.png" class="person">
-						</a>
-						<div style="position: absolute; left: 20px; line-height: 0px;">
-							<div style="line-height: 13px;">
-								<a href="webPages/jiedu/login.jsp">登录</a>
-							</div>
-							<div style="line-height: 13px;">&nbsp;/&nbsp;</div>
-							<div style="text-align: left; line-height: 13px;">
-								<a href="webPages/jiedu/register.jsp">注册</a>
-							</div>
-						</div>				
+		<div class="user_content">
+
+		<%
+			if (username == null){
+				out.println("<a href=\"webPages/jiedu/login.jsp\" style=\"padding: 0 50px;\"> <img src=\"image/header/u198.png\" class=\"person\">\n");
+				out.println("</a>\n");
+				out.println("<div style=\"position: absolute; left: 20px; line-height: 0px;\">\n");
+				out.println("<div style=\"line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/jiedu/login.jsp\">登录</a>\n");
+				out.println("</div>\n");
+				out.println("<div style=\"line-height: 13px;\">&nbsp;/&nbsp;</div>\n");
+				out.println("<div style=\"text-align: left; line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/jiedu/register.jsp\">注册</a>\n");
+				out.println("</div>\n");
+				out.println("</div>\n");
+			}
+			else{
+				out.println("<a href=\"webPages/usercenter/MyIntro.jsp\" style=\"padding: 0 50px;\"> <img src=\"image/header/u198.png\" class=\"person\">\n");
+				out.println("</a>\n");
+				out.println("<div style=\"position: absolute; left: 20px; line-height: 0px;\">\n");
+				out.println("<div style=\"line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/usercenter/MyIntro.jsp\">"+ username +"</a>\n");
+				out.println("</div>\n");
+				out.println("<div style=\"line-height: 13px;\">&nbsp;/&nbsp;</div>\n");
+				out.println("<div style=\"text-align: left; line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/jiedu/login.jsp\">退出</a>\n");
+				out.println("</div>\n");
+				out.println("</div>\n");
+			}
+		
+		%>
+		<!-- 
+			<a href="webPages/jiedu/login.jsp" style="padding: 0 50px;"> <img
+				src="image/header/u198.png" class="person">
+			</a>
+			<div style="position: absolute; left: 20px; line-height: 0px;">
+				<div style="line-height: 13px;">
+					<a href="webPages/jiedu/login.jsp">登录</a>
+				</div>
+				<div style="line-height: 13px;">&nbsp;/&nbsp;</div>
+				<div style="text-align: left; line-height: 13px;">
+					<a href="webPages/jiedu/register.jsp">注册</a>
+				</div>
 			</div>
+		-->
 		</div>
+	</div>
 	</div>
 	
 </body>

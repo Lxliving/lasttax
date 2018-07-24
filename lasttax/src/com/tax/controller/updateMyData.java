@@ -17,7 +17,7 @@ import com.tax.vo.user;
  * Servlet implementation class userCate
  * 设置用户分类servlet
  */
-@WebServlet("/userCate")
+@WebServlet("/updateMyData")
 public class updateMyData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,15 +45,20 @@ public class updateMyData extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String userID = request.getParameter("username");		//这个双引号内的username要和要提交的内容的name一致
+		//String userID = request.getParameter("username");		//（这句话啥意思？）=》这个双引号内的username要和要提交的内容的name一致（from 龚树志）
+		                                                        //下面这句话才能有效获取userID
+		String userID =(String) request.getSession().getAttribute("username");//获取那个界面的userID
 		DB_user du = new DB_user();
 		user use = new user();
-		use.setUserName(request.getParameter("userName"));	//修改用户的名字，而不是用户名！！！
+		use.setUserName(request.getParameter("userName1"));	//修改用户的名字，而不是用户名！！！
 		use.setPhone(request.getParameter("userTelephone"));//修改用户电话
 		use.setEmail(request.getParameter("mail"));			//修改用户邮箱地址
 		use.setUnitName(request.getParameter("unit"));		//修改
-		
+		System.out.println("111111111111");
 		DB_category dc = new DB_category();
+		//先把原先user_cate表里，当前用户的数据清空
+		dc.deleteUserCate(userID);
+		
 		//接下来操作复选框中分类选择
 		String zhidao = request.getParameter("zhidao");
 			if (zhidao!= null) 	dc.addUserCate(userID,"发票系统故障及操作指导");
@@ -96,15 +101,16 @@ public class updateMyData extends HttpServlet {
 		String jinshui = request.getParameter("jinshui");
 			if (jinshui != null)  dc.addUserCate(userID, "金税管理");
 		String jinchukou = request.getParameter("jinchukou");
-			if (jinchukou != null)  dc.addUserCate(userID, "进出口税收");
+		    if (yinggaizeng != null)  dc.addUserCate(userID, "进出口税收");
 		String zhengshou = request.getParameter("zhengshou");
 			if (zhengshou != null)  dc.addUserCate(userID, "征收管理");
 		String baoguan = request.getParameter("baoguan");
 			if (baoguan != null)  dc.addUserCate(userID, "发票保管");
-			
+			System.out.println("222222222222221");
 		//完成操作后进行页面跳转
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/userarea/personIntro.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/usercenter/MyIntro.jsp");
 		requestDispatcher.forward(request, response);
+		System.out.println("33333333333331");
 	}
 
 }

@@ -2,6 +2,14 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
+boolean hasLogin =false;
+
+String username = (String)request.getSession().getAttribute("username");
+if (username!= null){
+	hasLogin = true;
+}
+System.out.println(hasLogin);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -51,11 +59,54 @@ body {
         </ul>
     </div>
 		<!--   用户登录     -->
-		<div class="but">
-			<div class="but_content">
-			
-               </div>
+		<div class="user">
+		<div class="user_content">
+
+		<%
+			if (username == null){
+				out.println("<a href=\"webPages/jiedu/login.jsp\" style=\"padding: 0 50px;\"> <img src=\"image/header/u198.png\" class=\"person\">\n");
+				out.println("</a>\n");
+				out.println("<div style=\"position: absolute; left: 20px; line-height: 0px;\">\n");
+				out.println("<div style=\"line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/jiedu/login.jsp\">登录</a>\n");
+				out.println("</div>\n");
+				out.println("<div style=\"line-height: 13px;\">&nbsp;/&nbsp;</div>\n");
+				out.println("<div style=\"text-align: left; line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/jiedu/register.jsp\">注册</a>\n");
+				out.println("</div>\n");
+				out.println("</div>\n");
+			}
+			else{
+				out.println("<a href=\"webPages/usercenter/MyIntro.jsp\" style=\"padding: 0 50px;\"> <img src=\"image/header/u198.png\" class=\"person\">\n");
+				out.println("</a>\n");
+				out.println("<div style=\"position: absolute; left: 20px; line-height: 0px;\">\n");
+				out.println("<div style=\"line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/usercenter/MyIntro.jsp\">"+ username +"</a>\n");
+				out.println("</div>\n");
+				out.println("<div style=\"line-height: 13px;\">&nbsp;/&nbsp;</div>\n");
+				out.println("<div style=\"text-align: left; line-height: 13px;\">\n");
+				out.println("<a href=\"webPages/jiedu/login.jsp\">退出</a>\n");
+				out.println("</div>\n");
+				out.println("</div>\n");
+			}
+		
+		%>
+		<!-- 
+			<a href="webPages/jiedu/login.jsp" style="padding: 0 50px;"> <img
+				src="image/header/u198.png" class="person">
+			</a>
+			<div style="position: absolute; left: 20px; line-height: 0px;">
+				<div style="line-height: 13px;">
+					<a href="webPages/jiedu/login.jsp">登录</a>
+				</div>
+				<div style="line-height: 13px;">&nbsp;/&nbsp;</div>
+				<div style="text-align: left; line-height: 13px;">
+					<a href="webPages/jiedu/register.jsp">注册</a>
+				</div>
+			</div>
+		-->
 		</div>
+	</div>
 	</div>
 
 <!-- 头部标题end -->
@@ -109,7 +160,7 @@ body {
 						<div class="user_message">
 							<div class="usersss">
 								<span class="tips_left">用户姓名：</span>
-								<input type="text" name="userName" class="usermassage" value="user1">
+								<input type="text" name="userName1" class="usermassage" value="user1">
 							</div>
 							<div class="usersss">
 								<span class="tips_left">用户类型：</span>
@@ -134,117 +185,117 @@ body {
 								<span class="zhuanye">
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040001">
+											<input type="checkbox" class="major_item" name="zhidao" value="040001">
 											发票系统故障及操作指导
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040002">
+											<input type="checkbox" class="major_item" name="linggou" value="040002">
 											发票领购
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040003">
+											<input type="checkbox" class="major_item" name="daikai" value="040003">
 											发票代开
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040004">
+											<input type="checkbox" class="major_item" name="kaiju" value="040004">
 											发票开具
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040005">
+											<input type="checkbox" class="major_item" name="hongzi" value="040005">
 											红字增值税发票开具
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040006">
+											<input type="checkbox" class="major_item" name="zuofei" value="040006">
 											申报有误能否作废
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040007">
+											<input type="checkbox" class="major_item" name="zige" value="040007">
 											一般纳税人资格
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040008">
+											<input type="checkbox" class="major_item" name="fudao" value="040008">
 											辅导期一般纳税人
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040009">
+											<input type="checkbox" class="major_item" name="dikou" value="040009">
 											专用发票认证抵扣
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040010">
+											<input type="checkbox" class="major_item" name="tiaozheng" value="040010">
 											小规模纳税人增值税起征点是否有调整
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040011">
+											<input type="checkbox" class="major_item" name="rending" value="040011">
 											认定为一般纳税人之后是否可以转为小规模纳税人
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040012">
+											<input type="checkbox" class="major_item" name="baobiao" value="040012">
 											小规模纳税人自行开具的增值税专用发票如何填写申报表
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040013">
+											<input type="checkbox" class="major_item" name="zhuxiao" value="040013">
 											注销登记
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040014">
+											<input type="checkbox" class="major_item" name="jiancha" value="040014">
 											发票检查
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040015">
+											<input type="checkbox" class="major_item" name="diushi" value="040015">
 											专用发票丢失
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040016">
+											<input type="checkbox" class="major_item" name="zhengshoulv" value="040016">
 											征收率
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040017">
+											<input type="checkbox" class="major_item" name="yewu" value="040017">
 											非国税业务
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040018">
+											<input type="checkbox" class="major_item" name="dengji" value="040018">
 											信用等级
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040019">
+											<input type="checkbox" class="major_item" name="yinggaizeng" value="040019">
 											营改增
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040020">
+											<input type="checkbox" class="major_item" name="jinshui" value="040020">
 											金税管理
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040021">
+											<input type="checkbox" class="major_item" name="jinchukou" value="040021">
 											进出口税收
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040022">
+											<input type="checkbox" class="major_item" name="zhengshou" value="040022">
 											征收管理
 										</label>
 									
 										<label style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-											<input type="checkbox" class="major_item" name="major" value="040023">
+											<input type="checkbox" class="major_item" name="baoguan" value="040023">
 											发票保管
 										</label>
 									 

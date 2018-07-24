@@ -11,15 +11,32 @@ import com.tax.vo.consult;
 public class DB_category {
 	public DB_category() {}
 	DBUtil db = new DBUtil();
+	
 	public void addUserCate(String userID,String cate) {
 		//添加用户特长分类子方法
 		PreparedStatement pstm = null;
-		String sql = "insert into user_cate (userID,cateName) values(?,?)";
+		String sql = "insert into user_cate(userID,cateName) values(?,?)";
 		try {
 			pstm = db.getConPst(sql);
 			pstm.setString(1,userID);
 			pstm.setString(2,cate);
-			pstm.executeQuery();
+			pstm.executeUpdate();//执行数据库语句,后面是update不是query！
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DBUtil.close(pstm, null);
+		}
+	}
+	
+	public void deleteUserCate(String userID) {
+		//删除某用户的分类信息，用于给addUserCate铺垫
+		PreparedStatement pstm = null;
+		String sql = "delete from user_cate where userID=?";
+		try {
+			pstm = db.getConPst(sql);
+			pstm.setString(1,userID);
+			pstm.executeUpdate();//执行数据库语句
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
