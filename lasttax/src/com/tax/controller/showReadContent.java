@@ -53,7 +53,7 @@ public class showReadContent extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("readContent", rea);
 		//页面跳转的内容请自行调整
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/..");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/posts/post.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

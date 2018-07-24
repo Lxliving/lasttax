@@ -3,6 +3,7 @@ package com.tax.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.tax.comm.DBUtil;
 import com.tax.vo.answer;
@@ -35,6 +36,33 @@ public class DB_ans {
 			DBUtil.close(pstm,null);
 		}
 		return ans;
+	}
+	
+	public ArrayList<answer> getAns(){
+		ArrayList<answer> arr = new ArrayList<answer>();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from answer";
+			pstm = db.getConPst(sql);
+			rs = pstm.executeQuery();
+			while(rs.next()) {
+				answer ans = new answer();
+				ans.setAnsID(rs.getInt("ansID"));
+				ans.setDate(rs.getDate("date"));
+				ans.setUserID(rs.getString("userID"));
+				ans.setGood(rs.getInt("goodNum"));
+				ans.setKeep(rs.getInt("keptNum"));
+				ans.setTxt(rs.getString("txt"));
+				arr.add(ans);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstm, null);
+		}
+		return arr;
 	}
 	public int getChecked(int ansID) {
 		//查询一个answer是否已经经过审核

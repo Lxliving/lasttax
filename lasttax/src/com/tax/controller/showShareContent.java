@@ -51,7 +51,7 @@ public class showShareContent extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("shareContent", sha);
 		//接下来页面跳转的内容请您自己调整
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/...");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/posts/post1.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

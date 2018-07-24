@@ -3,16 +3,13 @@ package com.tax.vo;
 import java.util.*;
 
 public class answer {
-	/* ansID,txt,date,good,kept,check */
-	private String userID;
 	private int ansID;
 	private String txt; 
 	private Date date;				// In mysql parameter date has its own date format
 	private int good;
 	private int kept;
+	private String userID;
 	private int checked;
-	
-	public answer() {}
 	public answer(String userID,int ansID,String txt,Date date,int good,int kept,int checked ) {
 		this.setUserID(userID);
 		this.ansID=ansID;
@@ -22,7 +19,22 @@ public class answer {
 		this.kept=kept;
 		this.checked=checked;
 	}
-	
+	public answer() {}
+	public int getCheck() {
+		return checked;
+	}
+
+	public void setCheck(int checked) {
+		this.checked = checked;
+	}
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	public int getKeep() {
 		return kept;
 	}
@@ -55,15 +67,6 @@ public class answer {
 		this.txt = txt;
 	}
 
-
-	public int getCheck() {
-		return checked;
-	}
-
-	public void setCheck(int checked) {
-		this.checked = checked;
-	}
-
 	public int getAnsID() {
 		return ansID;
 	}
@@ -71,13 +74,9 @@ public class answer {
 	public void setAnsID(int ansID) {
 		this.ansID = ansID;
 	}
-
-	public String getUserID() {
-		return userID;
+	public String toString() {
+		String str = "The answerID is: "+ ansID+",\nThe answerText is: "+txt+",\ndate: "+date+
+				"\ngoodNum: "+good+"\nkeptNum: "+kept;
+		return str;
 	}
-
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
-
 }
