@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import com.tax.comm.DBUtil;
 import com.tax.vo.answer;
@@ -67,12 +68,36 @@ public class DB_answer {
 		}
 		return maxID;
 	}
-	
-	//用以用户(提问者本身)修改回答的内容
-	public void update() {
 
+	//输出某一个用户的所有的回答结果
+	public ArrayList<answer> getAnsByID(String userID){
+		ArrayList<answer> arr = new ArrayList<answer>();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from answer where userID=?";
+			pstm = db.getConPst(sql);
+			//设置参数
+			pstm.setString(1, userID);
+			rs = pstm.executeQuery();
+			while(rs.next()) {
+				answer ans = new answer();
+				ans.setAnsID(rs.getInt("ansID"));
+				ans.setDate(rs.getDate("date"));
+				ans.setUserID(rs.getString("userID"));
+				ans.setGood(rs.getInt("goodNum"));
+				ans.setKeep(rs.getInt("keptNum"));
+				ans.setTxt(rs.getString("txt"));
+					arr.add(ans);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstm, null);
+		}
+		return arr;
 	}
-	
 
 	
 }

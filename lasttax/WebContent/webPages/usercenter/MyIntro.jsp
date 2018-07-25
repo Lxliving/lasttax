@@ -207,36 +207,33 @@ System.out.println(hasLogin);
 
                 </div>
                 <div class="tab_content" id="tab_content1">
-                    <ul>
-                        <li class="tab_content_li_1">
-                            <a href="" class="tab_content_li_1_a">
-                                <span>问题：</span><span>我要分享</span>
-                            </a>
-                            <span class="tab_content_li_1_date">2017-12-16</span>
-                        </li>
-                        <li><span>收藏：</span><span>0</span></li>
-                        <li><span>回答：</span><span>1</span></li>
-                        <li><span>分类：</span><span>普通提问</span></li>
-                        <li><span>浏览：</span><span>34</span></li>
-                    </ul>
-                    <ul>
-                        <li class="tab_content_li_1">
-                            <a href="" class="tab_content_li_1_a">
-                                <span>问题：</span><span>个人所得税？</span>
-                            </a>
-                            <span class="tab_content_li_1_date">2017-12-14</span>
-                        </li>
-                        <li><span>收藏：</span><span>2</span></li>
-                        <li><span>回答：</span><span>4</span></li>
-                        <li><span>分类：</span><span>普通提问</span></li>
-                        <li><span>浏览：</span><span>118</span></li>
-                    </ul>
+                <%
+                	DB_cons dbc=new DB_cons();
+                	ArrayList<consult> arrCons=dbc.listConsByDateByID(username);
+                	
+                	for(int i=0;i<arrCons.size();i++){
+                		out.println("<ul>");
+                		out.println("<li class=\"tab_content_li_1\">");
+                		out.println("<a href=\"\" class=\"tab_content_li_1_a\">");
+                		out.println("<span>问题：</span><span>"+arrCons.get(i).getConsName()+"</span>");
+                		out.println("</a>");
+                		out.println("<span class=\"tab_content_li_1_date\">"+arrCons.get(i).getDate()+"</span>");
+                		out.println("</li>");
+                		out.println("<li><span>收藏：</span><span>"+arrCons.get(i).getKeptNum()+"</span></li>");
+                		out.println("<li><span>回答：</span><span>"+arrCons.get(i).getAnsNum()+"</span></li>");
+                		out.println("<li><span>分类：</span><span>普通提问</span></li>");  
+                		out.println("<li><span>浏览：</span><span>"+arrCons.get(i).getSeenNum()+"</span></li>");    
+                		out.println("</ul>");
+                	}
+
+                %>
+
                 </div>
                 <div class="tab_content Notdisplay" id="tab_content2">
                 <!-- 我的回答 -->
                 <% 
-                	DB_ans da = new DB_ans();
-                	ArrayList<answer> arr = da.getAns();
+                	DB_answer da = new DB_answer();
+                	ArrayList<answer> arr = da.getAnsByID(username);
 
                 	for(int i=0;i<arr.size();i++){
                 		out.println("<ul>");
