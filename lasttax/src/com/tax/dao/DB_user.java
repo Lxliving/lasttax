@@ -1,6 +1,7 @@
 package com.tax.dao;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 
 import com.tax.comm.DBUtil;
 import com.tax.vo.*;
@@ -108,5 +109,36 @@ public class DB_user {
 		}
 		return isValid;
 	}
+	
+	public ArrayList<user> getUser(){
+		//输出所有的用户信息
+		ArrayList<user> arr = new ArrayList<user>();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from user";
+			pstm = db.getConPst(sql);
+			rs = pstm.executeQuery();
+			while(rs.next()) {
+				user use=new user();
+				use.setUserID(rs.getString("userID"));
+				use.setUserName(rs.getString("userName"));
+				use.setPsw(rs.getString("psword"));
+				use.setPhone(rs.getString("unitName"));
+				use.setEmail(rs.getString("phone"));
+				use.setUnitName(rs.getString("email"));
+				
+				arr.add(use);
+				
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstm, null);
+		}
+		return arr;
+	}
+	
 	
 }

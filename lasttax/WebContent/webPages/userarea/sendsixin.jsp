@@ -10,6 +10,8 @@ if (username!= null){
 	hasLogin = true;
 }
 System.out.println(hasLogin);
+
+String zhuanjiaID = (String)request.getSession().getAttribute("zhuanjiaID");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -182,8 +184,8 @@ body {
 			<div class="xian2" style="width:23%"></div>
 		</div>
 		<div>
-			<form>
-				<textarea id="editor" class="ckeditor"></textarea>
+			<form action="addSixin">
+				<textarea id="editor" class="ckeditor" name="sixintext"></textarea>
 				<div class="div_button">
 					<button class="sixin_button">发送</button>
 					<button class="sixin_button"  type="button" onclick="javascript:window.location.href='webPages/userarea/userarea.jsp'">返回</button>

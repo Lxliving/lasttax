@@ -18,6 +18,10 @@ ArrayList<answer> arrAns = new ArrayList<answer>();
 arrAns =ans.getAns();
 int size=arrAns.size();
 System.out.print(size);
+
+DB_user dbu=new DB_user();
+ArrayList<user> arrUser=new ArrayList<user>();
+arrUser=dbu.getUser();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -230,159 +234,70 @@ body {
 		<!--//专家机构切换-->
 		<!--切换专家介绍-->
 		<div class="_3_youxiu_intro">
-			<div class="intro intro1">
-				<div class="intro_floor1">
-					<div class="intro_floor1_left">
-						<a href="webPages/userarea/personIntro.jsp"> <img src="image/u2815.png">
-						</a>
-					</div>
-					<div class="intro_floor1_right">
-						<a href="webPages/userarea/personIntro.jsp">
-							<p>管理员</p>
-						</a>
-						<p>
-							<span>邮箱：</span> <span>13366521793@qq.com</span>
-						</p>
-						<p>
-							<span>最近访问：</span> <span>2018-07-05 14:07:14</span>
-						</p>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="intro_floor2">
-					<div class="intro_floor2_1">
-						<span>总积分：</span> <span>89</span>
-					</div>
-					<div class="intro_floor2_2">
-						<span>回答数：</span> <span>116</span>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="intro_floor3">
-					<div class="intro_floor3_1">
-					<%
-						if(username==null){
-							out.println("<a  onclick=\"tips()\">发私信</a>");
-						}
-						else{
-							out.println("<a  href=\"webPages/userarea/sendsixin.jsp\">发私信</a>");
-						}
-					%>
-					</div>
-					<div class="intro_floor3_2">
-					<%
-						if(username==null){
-							out.println("<a  onclick=\"tips()\">邀请回答</a>");
-						}
-						else{
-							out.println("<a  href=\"webPages/userarea/invite_answer.jsp\">邀请回答</a>");
-						}
-					%>
-					</div>
-				</div>
-			</div>
-			<div class="intro">
-				<div class="intro_floor1">
-					<div class="intro_floor1_left">
-						<a href="webPages/userarea/personIntro.jsp"> <img src="image/u2815.png">
-						</a>
-					</div>
-					<div class="intro_floor1_right">
-						<a href="webPages/userarea/personIntro.jsp">
-							<p>admin3</p>
-						</a>
-						<p>
-							<span>邮箱：</span> <span>admin@admin.com</span>
-						</p>
-						<p>
-							<span>最近访问：</span> <span>2018-07-03 15:47:07</span>
-						</p>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="intro_floor2">
-					<div class="intro_floor2_1">
-						<span>总积分：</span> <span>4</span>
-					</div>
-					<div class="intro_floor2_2">
-						<span>回答数：</span> <span>16</span>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="intro_floor3">
-					<div class="intro_floor3_1">
-						<%
-						if(username==null){
-							out.println("<a  onclick=\"tips()\">发私信</a>");
-						}
-						else{
-							out.println("<a  href=\"webPages/userarea/sendsixin.jsp\">发私信</a>");
-						}
-					%>
-					</div>
-					<div class="intro_floor3_2">
-						<%
-						if(username==null){
-							out.println("<a  onclick=\"tips()\">邀请回答</a>");
-						}
-						else{
-							out.println("<a  href=\"webPages/userarea/invite_answer.jsp\">邀请回答</a>");
-						}
-					%>
-					</div>
-				</div>
-			</div>
-			<div class="intro">
-				<div class="intro_floor1">
-					<div class="intro_floor1_left">
-						<a href="webPages/userarea/personIntro.jsp"> <img src="image/u2815.png">
-						</a>
-					</div>
-					<div class="intro_floor1_right">
-						<a href="webPages/userarea/personIntro.jsp">
-							<p>admin4</p>
-						</a>
-						<p>
-							<span>邮箱：</span> <span>13366521793@qq.com</span>
-						</p>
-						<p>
-							<span>最近访问：</span> <span>2018-07-05 14:07:14</span>
-						</p>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="intro_floor2">
-					<div class="intro_floor2_1">
-						<span>总积分：</span> <span>89</span>
-					</div>
-					<div class="intro_floor2_2">
-						<span>回答数：</span> <span>116</span>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="intro_floor3">
-					<div class="intro_floor3_1">
-						<%
-						if(username==null){
-							out.println("<a  onclick=\"tips()\">发私信</a>");
-						}
-						else{
-							out.println("<a  href=\"webPages/userarea/sendsixin.jsp\">发私信</a>");
-						}
-					%>
-					</div>
-					<div class="intro_floor3_2">
-						<%
-						if(username==null){
-							out.println("<a  onclick=\"tips()\">邀请回答</a>");
-						}
-						else{
-							out.println("<a  href=\"webPages/userarea/invite_answer.jsp\">邀请回答</a>");
-						}
-					%>
-					</div>
-				</div>
-			</div>
+            <%
+            String zhuanjiaID;
+            String email;
+            String ansNum;/*这是回答数，还没写*/
+            
+            for(int i=0;i<3;i++){
+            	zhuanjiaID=arrUser.get(i).getUserID();
+            	email=arrUser.get(i).getEmail();
+            
+	            out.println("<!-- 下面是介绍专家的小框，3个之一，循环显示3个 -->");
+	            out.println("<div class=\"intro\">");
+				out.println("<div class=\"intro_floor1\">");
+				out.println("<div class=\"intro_floor1_left\">");
+				out.println("<a href=\"webPages/userarea/personIntro.jsp\"> <img src=\"image/u2815.png\">");
+				out.println("</a>");		
+				out.println("</div>");	
+				out.println("<div class=\"intro_floor1_right\">");	
+				out.println("<a href=\"webPages/userarea/personIntro.jsp\">");
+				out.println("<p>"+zhuanjiaID+"</p>");
+				out.println("</a>");
+				out.println("<p>");			
+				out.println("<span>邮箱：</span> <span>"+email+"</span>");		
+				out.println("</p>");
+				out.println("<p>");
+				out.println("<span>最近访问：</span> <span>2018-07-05 14:07:14</span>");
+				out.println("</p>");
+				out.println("</div>");
+				out.println("</div>");
+				out.println("<div class=\"clearfix\"></div>");
+				out.println("<div class=\"intro_floor2\">");
+				out.println("<div class=\"intro_floor2_1\">");
+				out.println("<span>总积分：</span> <span>89</span>");			
+				out.println("</div>");			
+				out.println("<div class=\"intro_floor2_2\">");		
+				out.println("<span>回答数：</span> <span>116</span>");	
+				out.println("</div>");	
+				out.println("</div>");	
+				out.println("<div class=\"clearfix\"></div>");		
+				out.println("<div class=\"intro_floor3\">");			
+				out.println("<div class=\"intro_floor3_1\">");		
+				if(username==null){		
+				out.println("<a onclick=\"tips()\">发私信</a>");			
+				}		
+				else{
+				out.println("<form action=\"clicksixin\" id=\"formsendsixin"+i+"\">");
+				out.println("<input id=\""+zhuanjiaID+"\" type=\"hidden\" name=\"zhuanjiaID\" value=\""+zhuanjiaID+"\">" );
+				out.println("<a onclick=\"document.getElementById('formsendsixin"+i+"').submit();\">发私信</a>");
+				out.println("</form>");
+				}	
+				out.println("</div>");			
+				out.println("<div class=\"intro_floor3_2\">");			
+				if(username==null){					
+				out.println("<a  onclick=\"tips()\">邀请回答</a>");				
+				}				
+				else{					
+				out.println("<a  href=\"webPages/userarea/invite_answer.jsp\">邀请回答</a>");			
+				}	
+				out.println("</div>");		
+				out.println("</div>");		
+				out.println("</div>");	
+            }
+
+			%>
+
 			<div class="clearfix"></div>
 		</div>
 		<!--//切换专家介绍-->

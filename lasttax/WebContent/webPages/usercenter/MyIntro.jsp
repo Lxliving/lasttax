@@ -237,8 +237,7 @@ System.out.println(hasLogin);
                 <% 
                 	DB_ans da = new DB_ans();
                 	ArrayList<answer> arr = da.getAns();
-                %> 
-                <%
+
                 	for(int i=0;i<arr.size();i++){
                 		out.println("<ul>");
                 		out.println("<li class=\"tab_content_li_1\">");
@@ -255,19 +254,6 @@ System.out.println(hasLogin);
                 		out.println("</ul>");
                 	}
                 %>
-                    <ul>
-                        <li class="tab_content_li_1">
-                            <a href="" class="tab_content_li_1_a">
-                                <span>问题：</span><span>所得税征收</span>
-                            </a>
-                            <span class="tab_content_li_1_date"><%arr.get(0).getDate(); %></span>
-                        </li>
-                        <li style="width:100%;float:none;padding-top: 3%"  class="chaochushenglve" >
-                            <span>回答：</span><span><%arr.get(0).getTxt(); %></span>
-                        </li>
-                        <li><span>浏览：</span><span>0</span></li>
-                        <li ><span>点赞：</span><span><%arr.get(0).getGood(); %></span></li>
-                    </ul>
                 </div>
 
             </div>
@@ -435,42 +421,26 @@ System.out.println(hasLogin);
                 </div>
                 <div class="xian1"></div>
                 <div class="tab_content" id="tab_content7">
-                    <ul>
-                        <li class="tab_content_li_1">
-                            <a href="" class="tab_content_li_1_a">
-                                <span>问题：</span><span>所得税征收</span>
-                            </a>
-                            <span class="tab_content_li_1_date">2018-12-19</span>
-                        </li>
-                        <li style="width:100%;float:none;padding-top: 3%"  class="chaochushenglve" >
-                            <span>被私信人：</span>
-                            <span><a href="">管理员</a></span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="tab_content_li_1">
-                            <a href="" class="tab_content_li_1_a">
-                                <span>问题：</span><span>个人所得税？</span>
-                            </a>
-                            <span class="tab_content_li_1_date">2017-12-14</span>
-                        </li>
-                        <li style="width:100%;float:none;padding-top: 3%"  class="chaochushenglve" >
-                            <span>被私信人：</span>
-                            <span><a href="">admin4</a></span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="tab_content_li_1">
-                            <a href="" class="tab_content_li_1_a">
-                                <span>问题：</span><span>车船税的征收？</span>
-                            </a>
-                            <span class="tab_content_li_1_date">2017-12-14</span>
-                        </li>
-                        <li style="width:100%;float:none;padding-top: 3%"  class="chaochushenglve" >
-                            <span>被私信人：</span>
-                            <span><a href="">admin4</a></span>
-                        </li>
-                    </ul>
+                 <%
+                 DB_sixin dbs=new DB_sixin();
+                 ArrayList<sixin> arrSix=dbs.getSixinbyID(username);
+                 System.out.println(arrSix.size()+"size");
+                 for(int i=0;i<arrSix.size();i++){
+                	 out.println("<ul>");
+                	 out.println("<li class=\"tab_content_li_1\">");
+                	 out.println(" <a href=\"\" class=\"tab_content_li_1_a\">");
+                	 out.println(" <span>内容：</span><span>"+arrSix.get(i).getText()+"</span>");
+                	 out.println("</a>");
+                	 out.println(" <span class=\"tab_content_li_1_date\">"+arrSix.get(i).getDate()+"</span>");
+                	 out.println("</li>");
+                	 out.println("<li style=\"width:100%;float:none;padding-top: 3%\"  class=\"chaochushenglve\" >");
+                	 out.println("<span>被私信人：</span>");
+                	 out.println("<span><a href=\"\">"+arrSix.get(i).getReceiveID()+"</a></span>");  
+                	 out.println("</li>");   
+                	 out.println(" </ul>");         
+                	 }
+                    %>
+
                 </div>
                 <div class="tab_content Notdisplay" id="tab_content8">
                     <ul>
