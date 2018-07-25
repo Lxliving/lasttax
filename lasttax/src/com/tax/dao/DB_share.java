@@ -44,7 +44,21 @@ public class DB_share {
 			pstm.setInt(4, sha.getKeptNum());
 			pstm.setDate(5,sqlDate);
 			pstm.setString(6, sha.getText());
-			pstm.setInt(7, sha.getCherked());
+			pstm.setInt(7, sha.getChecked());
+			pstm.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(pstm, null);
+		}
+	}
+	
+	public void delete(int shareID) {
+		//删除经验分享
+		PreparedStatement pstm = null;
+		String sql = "delete from share where shareID= '"+shareID+"'";
+		try {
+			pstm = db.getConPst(sql);
 			pstm.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -136,6 +150,7 @@ public class DB_share {
 				sha.setKeptNum(rs.getInt("keptNum"));
 				sha.setDate(rs.getDate("date"));
 				sha.setText(rs.getString("text"));
+				sha.setChecked(rs.getInt("checked"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -162,6 +177,7 @@ public class DB_share {
 				sha.setKeptNum(rs.getInt("keptNum"));
 				sha.setDate(rs.getDate("date"));
 				sha.setText(rs.getString("text"));
+				sha.setChecked(rs.getInt("checked"));
 				al.add(sha);
 			}
 		}catch(SQLException e) {

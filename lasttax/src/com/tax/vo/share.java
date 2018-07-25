@@ -9,7 +9,7 @@ public class share {
 	private int keptNum;
 	private Date date;			//in mysql parameter 'date' has its own format
 	private String text;			//detail about the shared information
-	private int cherked;
+	private int checked;
 	
 	public share() {}
 	public share(int shareID,String shareName,int seenNum,int keptNum,Date date,String text,int checked) {
@@ -19,7 +19,7 @@ public class share {
 		this.keptNum=keptNum;
 		this.date=date;
 		this.text=text;
-		this.cherked=checked;
+		this.checked=checked;
 	}
 	
 	public String getText() {
@@ -69,10 +69,10 @@ public class share {
 	public void setShareID(int shareID) {
 		this.shareID = shareID;
 	}
-	public int getCherked() {
-		return cherked;
+	public int getChecked() {
+		return checked;
 	}
-	public void setCherked(int cherked) {
-		this.cherked = cherked;
+	public void setChecked(int checked) {
+		this.checked = checked;
 	}
 }
