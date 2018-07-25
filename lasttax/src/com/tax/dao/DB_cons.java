@@ -30,7 +30,18 @@ public class DB_cons {
 			DBUtil.close(pstm, null);
 		}
 	}
-	
+	public void delete(int consID) {
+		PreparedStatement pstm = null;
+		String sql = "delete from consult where consID= '"+consID+"'";
+		try {
+			pstm = db.getConPst(sql);
+			pstm.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(pstm, null);
+		}
+	}
 	public int getConsID() {
 		//获取下个ID应该设置为多少
 		int ID = 0;
@@ -113,6 +124,7 @@ public class DB_cons {
 				cons.setKeptNum(rs.getInt("keptNum"));
 				cons.setXuanNum(rs.getInt("keptNum"));
 				cons.setDate(rs.getDate("date"));
+				cons.setUserID(rs.getString("userID"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -152,6 +164,7 @@ public class DB_cons {
 				cons.setAnsNum(res.getInt("ansNum"));
 				cons.setKeptNum(res.getInt("keptNum"));
 				cons.setXuanNum(res.getInt("xuanNum"));
+				cons.setCheck(res.getInt("checked"));
 				cons.setDate(res.getDate("date"));
 //				cons.setCategory(dca.getCate(cons.getConsID()));
 				arrCons.add(cons);
