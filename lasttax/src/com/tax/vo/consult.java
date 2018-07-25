@@ -12,15 +12,23 @@ public class consult {
 	private Date date;
 	private int xuanNum;
 	private ArrayList<String> category;
-	private int check;
+	private int checked;
 	private String userID;
 	
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	public int getCheck() {
-		return check;
+		return checked;
 	}
 
 	public void setCheck(int check) {
-		this.check = check;
+		this.checked = check;
 	}
 
 	public ArrayList<String> getCategory() {
@@ -93,12 +101,6 @@ public class consult {
 		this.consID = consID;
 	}
 
-	public String getUserID() {
-		return userID;
-	}
 
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
 	
 }
