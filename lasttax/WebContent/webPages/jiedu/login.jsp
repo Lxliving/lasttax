@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
+String valiCode = (String) session.getAttribute("Valicode");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -177,7 +178,7 @@ float:right;
 						<span id="password1"></span>
 					</li>
 					<li class="login_yzm">
-						<div><input  data-ok="0" id="yanzhengma" type="text"  style="width: 64%;"></div>
+						<div><input  data-ok="0" id="yanzhengma" type="text" name = "yanzhengma"  style="width: 64%;"></div>
 						<a id="yanzhengma">
 							<img id = "ima1" onclick="changeValiImage(this);" src="yzmServlet" alt="验证码">
 						</a>
