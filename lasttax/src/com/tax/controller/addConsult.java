@@ -49,11 +49,16 @@ public class addConsult extends HttpServlet {
 		consult cons = new consult();
 		cons.setConsID(dc.getConsID());
 		cons.setConsName(request.getParameter("title"));
-		cons.setConsDetail(request.getParameter("detil"));
+		String txt = "";    
+        //调用方法  正则表达式去掉内容首尾的<p>和</p>
+        txt = request.getParameter("detil").replaceAll( "<p>|</p>","");
+		cons.setConsDetail(txt);
 		cons.setCheck(0);
 		cons.setXuanNum(0);
 		java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
 		cons.setDate(currentDate);
+		String userID =(String) request.getSession().getAttribute("username");
+		cons.setUserID(userID);
 		dc.addCons(cons);
 		
 		System.out.println(cons.getConsID() + " " + cons.getConsDetail() + " " + cons.getConsName());

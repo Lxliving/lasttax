@@ -10,7 +10,7 @@ public class DB_cons {
 	DBUtil db = new DBUtil();
 	public void addCons(consult cons) {
 		PreparedStatement pstm = null;
-		String sql = "insert into consult(consID,consName,consDetil,seenNum,ansNum,keptNum,xuanNum,date) values (?,?,?,?,?,?,?,?)";
+		String sql = "insert into consult(consID,consName,consDetil,seenNum,ansNum,keptNum,xuanNum,checked,date,userID) values (?,?,?,?,?,?,?,?,?,?)";
 		try {
 			pstm = db.getConPst(sql);
 			//设置参数
@@ -21,7 +21,9 @@ public class DB_cons {
 			pstm.setInt(5, cons.getAnsNum());
 			pstm.setInt(6, cons.getKeptNum());
 			pstm.setInt(7, cons.getXuanNum());
-			pstm.setDate(8, (Date) cons.getDate());
+			pstm.setInt(8, cons.getCheck());
+			pstm.setDate(9, (Date) cons.getDate());
+			pstm.setString(10, cons.getUserID());
 			pstm.executeUpdate();
 			System.out.println("添加一条数据到consult");
 		}catch(SQLException e) {
@@ -30,18 +32,7 @@ public class DB_cons {
 			DBUtil.close(pstm, null);
 		}
 	}
-	public void delete(int consID) {
-		PreparedStatement pstm = null;
-		String sql = "delete from consult where consID= '"+consID+"'";
-		try {
-			pstm = db.getConPst(sql);
-			pstm.executeUpdate();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			DBUtil.close(pstm, null);
-		}
-	}
+	
 	public int getConsID() {
 		//获取下个ID应该设置为多少
 		int ID = 0;
@@ -124,7 +115,6 @@ public class DB_cons {
 				cons.setKeptNum(rs.getInt("keptNum"));
 				cons.setXuanNum(rs.getInt("keptNum"));
 				cons.setDate(rs.getDate("date"));
-				cons.setUserID(rs.getString("userID"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -164,7 +154,6 @@ public class DB_cons {
 				cons.setAnsNum(res.getInt("ansNum"));
 				cons.setKeptNum(res.getInt("keptNum"));
 				cons.setXuanNum(res.getInt("xuanNum"));
-				cons.setCheck(res.getInt("checked"));
 				cons.setDate(res.getDate("date"));
 //				cons.setCategory(dca.getCate(cons.getConsID()));
 				arrCons.add(cons);
@@ -267,4 +256,38 @@ public class DB_cons {
 		dca_3.listCateInArr(arrCons_3);
 		return arrCons_3;
 	}
+	
+	//按日期排序，并且按照用户id选择某一用户的问题列表,用在个人中心界面
+	public ArrayList<consult> listConsByDateByID(String userID){
+		ArrayList<consult> arrCo = new ArrayList<consult>();
+		PreparedStatement pstm_1 = null;
+		
+		DB_category dca_1 = new DB_category();
+		try {
+			String sql = "select * from consult where userID = ? order by date desc";
+			pstm_1 = db.getConPst(sql);
+			pstm_1.setString(1, userID);
+			ResultSet res = pstm_1.executeQuery();
+			while(res.next()) {
+				consult cons_1 = new consult();
+				cons_1.setConsID(res.getInt("consID"));
+				cons_1.setConsName(res.getString("consName"));
+				cons_1.setConsDetail(res.getString("consDetil"));
+				cons_1.setSeenNum(res.getInt("seenNum"));
+				cons_1.setAnsNum(res.getInt("ansNum"));
+				cons_1.setKeptNum(res.getInt("keptNum"));
+				cons_1.setDate(res.getDate("date"));
+				cons_1.setXuanNum(res.getInt("xuanNum"));
+//				cons.setCategory(dca.getCate(cons.getConsID()));
+				arrCo.add(cons_1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(pstm_1,null);
+		}
+		dca_1.listCateInArr(arrCo);
+		return arrCo;
+	}
+	
 }
