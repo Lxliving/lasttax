@@ -8,8 +8,11 @@ boolean hasLogined = false;
 if(username!=null){
 	hasLogined = true;
 }
+//下面是回答链表
 ArrayList<answer> arrAns =new ArrayList<answer>();
 arrAns=(ArrayList<answer>)request.getSession().getAttribute("arraylist");
+
+//下面是问题链表
 consult cons = new consult(); 
 cons=(consult)request.getSession().getAttribute("consult");
 int size=arrAns.size();
@@ -130,18 +133,24 @@ int size=arrAns.size();
 </div> 
 
 <div class="jubao" style="left: 400px;top: 200px;"> 
-  
-<div class="ju_title"> 
-<img alt="点击可以关闭" src="image/icon/closepopwinbtn.png" width="20px" height="20px;"> 
-</div> 
-  
-<div class="ju_content"> 
-	<div class="ju_content_wenzi" ><span >举报详细信息</span> </div>
-	<textarea  class="ju_text"></textarea>
-</div> 
-<div class="ju_bottom"> 
-<input type="button" id="submit" value="提交" class="sub_btn" > 
-</div>  
+	<form action="addWentijubao">
+		<%
+			int jubao_consID=cons.getConsID();
+		//用input把举报的问题id发过去
+		out.println("<input type=\"hidden\" name=\"jubao_consID\" value=\""+jubao_consID+"\">");
+		%>
+		<div class="ju_title"> 
+		<img alt="点击可以关闭" src="image/icon/closepopwinbtn.png" width="20px" height="20px;"> 
+		</div> 
+		  
+		<div class="ju_content"> 
+			<div class="ju_content_wenzi" ><span >举报详细信息</span> </div>
+			<textarea  class="ju_text" name="jubaotext"></textarea>
+		</div> 
+		<div class="ju_bottom"> 
+		<input type="submit" id="submit" value="提交" class="sub_btn" > 
+		</div>  
+	</form>
 </div> 
 
 
@@ -195,7 +204,7 @@ int size=arrAns.size();
 					<!-- 问题详情 end -->
 				</div>
 			</div>
-		<!-- 我的答案 start -->
+		<!-- 问题附带信息 start -->
 		<div class="ques_content_three">
 			<div class="ques_content_three_nav">
 				<ul>
@@ -208,17 +217,16 @@ int size=arrAns.size();
 					  ansNum=cons.getAnsNum();
 					  out.println(ansNum);
 					  %></span></li>
-						
-					
+								
 					<li  style="cursor:pointer;float:right;cursor:pointer;" onclick="report();" class="report">举报</li>
 					<li	onClick="star(this)"  style="float:right;cursor:pointer;display:block\">
 											 <span class="star"  >收藏</span>
 											<span class="has_star" style="display: none">已收藏</span></li>
 				</ul>
 			</div>
-			<!-- 最佳回答 -->
 			
-			<!-- 我的答案 end -->
+			
+			<!-- 问题附带信息 end -->
 			<!--其他回答 start -->
 			<h1>全部回答</h1>
 			<div class="gary">
@@ -290,30 +298,7 @@ int size=arrAns.size();
 		</div>
 	</div>
 	</div>
-	<!-- 弹出举报详细信息窗口 start -->
-	<div class="ex_ques_PopWinbg">
-		<div class="ex_ques_PopWinContent">
-			<form method="GET" id="sunmitTable">
-				<table cellspacing="0" cellpadding="0">
-					<tr>
-						<td colspan="6">举报详细信息</td>
-						<td><input type="hidden" name="target" id="target" style="height:0;width:0;"></td>
-						<td><input type="hidden" name="targetId" id="targetId" style="height:0;width:0;"></td>
-					</tr>
-					<tr><td colspan="6" style="height:5px;"></td></tr>
-					<tr>
-						<td colspan="6">
-						<textarea name="description"></textarea> 
-						
-						</td>
-					</tr>
-					<tr><td colspan="6"><button type="submit">提交</button></td></tr>
-				</table>
-			</form>
-			<div class="ex_ques_Close_PopWin" onclick="closePopWin()"></div>
-		</div>
-	</div>
-	<!-- 弹出举报详细信息窗口 end -->
+
 	<!-- 弹出修改详细信息窗口 start -->
 		<div class="ex_ques_PopWinbgdel">
 			<div class="ex_ques_PopWinContentdel">
