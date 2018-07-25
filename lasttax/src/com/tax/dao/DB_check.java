@@ -23,7 +23,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, consID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -39,7 +39,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, consID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -55,7 +55,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, ansID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			DBUtil.close(pstm, null);
 		}finally {
@@ -70,8 +70,8 @@ public class DB_check {
 		try {
 			pstm = db.getConPst(sql);
 			//设置参数
-			pstm.setInt(1, ansID);
-			pstm.executeQuery();
+			pstm.setInt(2, ansID);
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			DBUtil.close(pstm, null);
 		}
@@ -85,7 +85,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, shareID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			DBUtil.close(pstm, null);
 		}finally {
@@ -101,7 +101,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, shareID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			DBUtil.close(pstm, null);
 		}finally {
@@ -117,7 +117,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, readID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			DBUtil.close(pstm, null);
 		}finally {
@@ -133,7 +133,7 @@ public class DB_check {
 			pstm = db.getConPst(sql);
 			//设置参数
 			pstm.setInt(1, readID);
-			pstm.executeQuery();
+			pstm.executeUpdate();
 		}catch(SQLException e) {
 			DBUtil.close(pstm, null);
 		}finally {

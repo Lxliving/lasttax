@@ -1,6 +1,8 @@
 package com.tax.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +46,8 @@ public class consQualify extends HttpServlet {
 		int consID = Integer.parseInt(request.getParameter("consID"));
 		DB_check dc = new DB_check();
 		dc.checkCons(consID);
-		response.setIntHeader("refresh", 1);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/guanli/Szixun.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 }

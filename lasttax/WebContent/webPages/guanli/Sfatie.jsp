@@ -8,6 +8,11 @@ boolean hasLogined = false;
 if(username!=null){
 	hasLogined = true;
 }
+DB_share arr=new DB_share();
+ArrayList<share> arrCons = new ArrayList<share>();
+
+arrCons =arr.Query();
+int size=arrCons.size();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -22,139 +27,98 @@ if(username!=null){
 <script type="text/javascript" src="js/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/extends.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
-<script>
-
-$(function(){
-	$('#bussinessAdminPostTable').datagrid({
-		title:'发帖审核列表', 								//标题
-		method:'post',
-		iconCls:'icon-tip', 							//图标
-		singleSelect:false, 							//多选
-		height:366, 									//高度
-		fit:true,
-		fitColumns: false, 								//自动调整各列，用了这个属性，下面各列的宽度值就只是一个比例。
-		striped: true, 									//奇偶行颜色不同                        
-		collapsible:false,								//可折叠
-		url:"admin/examine/post/postQueryList",		//数据来源
-		sortName: 'id',									//排序的列
-		sortOrder: 'asc', 								//倒序
-		remoteSort: true, 								//服务器端排序
-		idField:'id', 									//主键字段 
-		queryParams:{}, 								//查询条件
-		pagination:true, 								//显示分页
-		rownumbers:true, 								//显示行号
-		columns:[[
-				{field:'ck',checkbox:true,width:2}, //显示复选框 
-				{field:'id',title:'ID',sortable:true, hidden:true,width:100,                             
-					formatter:function(value,row,index){return row.id;}                                
-				},
-				{field:'userName',title:'创建者',sortable:true, hidden:false,width:80,                             
-					formatter:function(value,row,index){return row.userName;}                                
-				},
-				{field:'title',title:'帖子标题',sortable:true, hidden:false,width:100,                             
-					formatter:function(value,row,index){return row.title;}                                
-				},
-				{field:'type',title:'类别',sortable:true, hidden:false,width:80,                             
-					formatter:function(value,row,index){return row.type == '0'?'经验分享':'专家解读';}                     
-				},
-				{field:'createdTime',title:'创建时间',sortable:true, hidden:false,width:80,                             
-					formatter:function(value,row,index){return row.createdTime;}                                
-				},
-				{field:'content',title:'内容',sortable:true, hidden:false,width:300,                             
-					formatter:function(value,row,index){
-						var url="<a href=javascript:contentDetails()>"+row.content+"</a>"
-						return url;
-						}                                
-				},
-				{field:'status',title:'审核状态',sortable:true, hidden:false,width:90,                             
-					formatter:function(value,row,index){
-							if(row.status=='0'){
-								return row.status='审核中';
-							}else if(row.status=='1'){
-								return row.status='审核通过';
-							}else{
-								return row.status='审核未通过';
-							}
-						}                                
-				},
-				{field:'browseCount',title:'浏览数',sortable:true, hidden:false,width:80,                             
-					formatter:function(value,row,index){return row.browseCount;}                                
-				},
-				{field:'starCount',title:'收藏数',sortable:true, hidden:false,width:80,                             
-					formatter:function(value,row,index){return row.starCount;}                                
-				},
-				{field:'enabled',title:'是否可用',sortable:true, hidden:false,width:80,                             
-					formatter:function(value,row,index){return row.enabled == '0'?'不可用':'可用';}
-				},
-				]],
-		toolbar:'#tt_btn',  
-        pagination:true,
-	});
-	
-	//通过
-	$("#pass").on("click", function(){
-		$parent.messager.alert("提示","审核通过", "info");
-	});
-	//不通过
-	$("#unpass").on("click", function(){
-		$parent.messager.alert("提示","审核不通过", "info");
-	});
-	//删除
-	$("#delete").on("click", function(){
-		$parent.messager.alert("提示","已删除", "info");
-	});
-})
-
-function viewDetail(date, id){
-	$parent.messager.alert("提示","查询详细", "info");
-}
-
-//监听窗口大小变化
-window.onresize = function(){
-	setTimeout(domresize,300);
-};
-//改变表格宽高
-function domresize(){
-	$('#bussinessAdminPostTable').datagrid('resize',{  
-		height:$("#body").height()-$('#search_area').height()-5,
-		width:$("#body").width()
-	});
-}
-</script>
-</head>
+<style type="text/css">
+div button th {
+font-size:18px}
+.shenhe {padding_left:20px;
+        display:inline;
+         float:left; 
+         margin-right:5px;   
+   }
+.jujue{
+       display:inline;
+       float:left;
+       margin-right:5px; }
+.shanchu{
+        display:inline;
+        float:left;}
+.shen{
+background-color:#1B55A9;
+	 width:40px;
+	 height: 23px;
+	 border: none;
+	 color: white;
+	 font-size: 12px;
+	 cursor: pointer;}
+</style>
 <body class="easyui-layout" >
-<div id="body" region="center" > 
-  <!-- 查询条件区域 -->
-  <div id="search_area" >
-    <div id="conditon">
-      <table border="0">
-       <tr>
-								<td width="10%" align="right">发帖标题：</td>
-								<td width="15%" align="left">
-									<input name="title" class="easyui-textbox" style="width:90%;">
-								</td>
-								<td width="10%" align="right">发帖人：</td>
-								<td width="15%" align="left">
-									<input name="user.userName" class="easyui-textbox" style="width:90%;">
-								</td>
-								<td width="50%" align="center" >
-									<a onclick="searchPost();" class="easyui-linkbutton" iconCls="icon-search">查询</a>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick="clearPost();" class="easyui-linkbutton" iconCls="icon-undo">清空</a>
-								</td>
-							</tr>
-      </table>
-    </div>
-    <span id="openOrClose">111</span> 
-  </div>
-  <!-- 数据表格区域 -->
-  <table id="bussinessAdminPostTable" style="table-layout:fixed;" ></table>
-  <!-- 表格顶部工具按钮 -->
-  <div id="tt_btn">
- <a href="javascript:void(0)"  id="delete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-      <a href="javascript:void(0)"  id="pass" class="easyui-linkbutton" iconCls="icon-remove" plain="true">审核通过</a>
-      <a href="javascript:void(0)"  id="unpass" class="easyui-linkbutton" iconCls="icon-remove" plain="true">审核不通过</a> 
-      </div>
-</div>
+<div class="zixun_list" >
+ <table border="0" width="1000px">
+  <tr style="font-size:14px;">
+    <th>帖子标题</th>
+    <th>帖子内容</th>
+    <th>提问时间</th>
+    <th>浏览次数</th>
+    <th>收藏数</th>
+    <th>审核状态</th>
+    <th>操作</th>
+  </tr>
+  <%
+       int  ConsId;
+       Date ConsDate;
+	    String ConsName;
+	     int SeenNum;
+	   String ConsDetail;
+	   int KeptNum;
+	   int checked;
+
+	  
+		 for(int i=0;i<size;i++){
+			 
+			
+			 ConsDate =arrCons.get(i).getDate();
+			 ConsName =arrCons.get(i).getShareName();
+			 SeenNum=arrCons.get(i).getSeenNum();
+			 KeptNum =arrCons.get(i).getKeptNum();
+			 ConsDetail=arrCons.get(i).getText();
+			 ConsId=arrCons.get(i).getShareID();
+			 checked=arrCons.get(i).getCherked();
+			 String check="";
+			 if(checked==0){check="待审核";}
+			 else if(checked==1){check="审核通过";}
+			 else{check="未通过审核";}
+			
+			 out.println("<tr>\n");
+			 out.println("<th>"+ConsName+"\n");
+			out.println("</th>\n");
+			 out.println("<th>"+ConsDetail+"\n");
+			out.println("</th>\n");
+			out.println("<th>"+ConsDate+"\n");
+			out.println("</th>\n");
+			out.println("<th>"+SeenNum+"\n");
+			out.println("</th>\n");
+			out.println("<th>"+KeptNum+"\n");
+			out.println("</th>\n");
+			out.println("<th>"+check+"\n");
+			out.println("</th>\n");
+			out.println("<th><div class=\"shenhe\">\n");
+			 out.println("<form  id=\"submitQes\" action=\"\" method=\"post\">");
+			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"consID\" value=\""+ConsId+ "\"> \n");
+			out.println("<button type=\"submit\" class=\"shen\">审核</button><span>  </span>\n");
+			 out.println("</form></div>");
+			 out.println("<div class=\"jujue\"><form  id=\"submitQes\" action=\"\" method=\"post\">");
+			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"consID\" value=\""+ConsId+ "\"> \n");
+			out.println("<button type=\"submit\" class=\"shen\">拒绝</button><span>  </span>\n");
+			 out.println("</form></div>");
+			out.println("<div class=\"shanchu\"><form  id=\"submitQes\" action=\"\" method=\"post\">");
+			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"consID\" value=\""+ConsId+ "\"> \n");
+			out.println("<button type=\"submit\" class=\"shen\">删除</button>\n");
+			 out.println("</form></div>");
+			out.println("</th></tr>\n");
+		 }			
+		
+		%>
+
+</table>
 </body>
 </html>

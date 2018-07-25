@@ -71,11 +71,10 @@ if(username!=null){
       { id:1, pId:0, name:"系统管理", open:true},
       { id:11, pId:1, name:"用户管理",file:"webPages/guanli/Guser.jsp"},
       { id:2, pId:0, name:"审核管理", open:true},
-      { id:21, pId:2, name:"发帖审核",file:"webPages/guanli/Sfatie.jsp"},
+      { id:21, pId:2, name:"经验分享审核",file:"webPages/guanli/Sfatie.jsp"},
       { id:22, pId:2, name:"咨询审核",file:"webPages/guanli/Szixun.jsp"},
       { id:23, pId:2, name:"回答审核",file:"webPages/guanli/Shuida.jsp"},
       { id:24, pId:2, name:"举报审核",file:"webPages/guanli/Sjubao.jsp"},
-      { id:27, pId:2, name:"轮播图管理",file:"webPages/guanli/Slunbo.jsp"},
     
     ];
     $(document).ready(function(){

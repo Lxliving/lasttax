@@ -1,6 +1,8 @@
 package com.tax.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +15,7 @@ import com.tax.dao.DB_check;
  * Servlet implementation class consQualify
  *-咨询对象审核拒绝
  */
-@WebServlet("/consQualify")
+@WebServlet("/consDisqualify")
 public class consDisqualify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,8 +45,9 @@ public class consDisqualify extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		int consID = Integer.parseInt(request.getParameter("consID"));
 		DB_check dc = new DB_check();
-		dc.checkCons(consID);
-		response.setIntHeader("refresh", 1);
+		dc.uncheckCons(consID);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("webPages/guanli/Szixun.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 }
