@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.tax.comm.DBUtil;
 import com.tax.vo.*;
 public class DB_cons {
-	public DB_cons() {}
+public DB_cons() {}
 	
 	DBUtil db = new DBUtil();
 	public void addCons(consult cons) {
@@ -168,6 +168,7 @@ public class DB_cons {
 				cons.setXuanNum(res.getInt("xuanNum"));
 				cons.setCheck(res.getInt("checked"));
 				cons.setDate(res.getDate("date"));
+				cons.setUserID(res.getString("userID"));
 //				cons.setCategory(dca.getCate(cons.getConsID()));
 				arrCons.add(cons);
 			}
@@ -269,37 +270,36 @@ public class DB_cons {
 		dca_3.listCateInArr(arrCons_3);
 		return arrCons_3;
 	}
-	
-	//按日期排序，并且按照用户id选择某一用户的问题列表,用在个人中心界面
-		public ArrayList<consult> listConsByDateByID(String userID){
-			ArrayList<consult> arrCo = new ArrayList<consult>();
-			PreparedStatement pstm_1 = null;
-			
-			DB_category dca_1 = new DB_category();
-			try {
-				String sql = "select * from consult where userID = ? order by date desc";
-				pstm_1 = db.getConPst(sql);
-				pstm_1.setString(1, userID);
-				ResultSet res = pstm_1.executeQuery();
-				while(res.next()) {
-					consult cons_1 = new consult();
-					cons_1.setConsID(res.getInt("consID"));
-					cons_1.setConsName(res.getString("consName"));
-					cons_1.setConsDetail(res.getString("consDetil"));
-					cons_1.setSeenNum(res.getInt("seenNum"));
-					cons_1.setAnsNum(res.getInt("ansNum"));
-					cons_1.setKeptNum(res.getInt("keptNum"));
-					cons_1.setDate(res.getDate("date"));
-					cons_1.setXuanNum(res.getInt("xuanNum"));
-//					cons.setCategory(dca.getCate(cons.getConsID()));
-					arrCo.add(cons_1);
-				}
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}finally{
-				DBUtil.close(pstm_1,null);
+	public ArrayList<consult> listConsByDateByID(String userID){
+		ArrayList<consult> arrCo = new ArrayList<consult>();
+		PreparedStatement pstm_1 = null;
+		
+		DB_category dca_1 = new DB_category();
+		try {
+			String sql = "select * from consult where userID = ? order by date desc";
+			pstm_1 = db.getConPst(sql);
+			pstm_1.setString(1, userID);
+			ResultSet res = pstm_1.executeQuery();
+			while(res.next()) {
+				consult cons_1 = new consult();
+				cons_1.setConsID(res.getInt("consID"));
+				cons_1.setConsName(res.getString("consName"));
+				cons_1.setConsDetail(res.getString("consDetil"));
+				cons_1.setSeenNum(res.getInt("seenNum"));
+				cons_1.setAnsNum(res.getInt("ansNum"));
+				cons_1.setKeptNum(res.getInt("keptNum"));
+				cons_1.setDate(res.getDate("date"));
+				cons_1.setXuanNum(res.getInt("xuanNum"));
+//				cons.setCategory(dca.getCate(cons.getConsID()));
+				arrCo.add(cons_1);
 			}
-			dca_1.listCateInArr(arrCo);
-			return arrCo;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(pstm_1,null);
 		}
+		dca_1.listCateInArr(arrCo);
+		return arrCo;
+	}
 }
+
