@@ -80,7 +80,7 @@ public class DB_check {
 	public void checkShare(int shareID) {
 		//审核通过分享对象，把分享对象在数据库中保存的checked属性切换为1，表示审核通过
 		PreparedStatement pstm = null;
-		String sql = "update answer set checked = 1 where ansID = ?";
+		String sql = "update share set checked = 1 where shareID = ?";
 		try {
 			pstm = db.getConPst(sql);
 			//设置参数
@@ -96,7 +96,7 @@ public class DB_check {
 	public void uncheckShare(int shareID) {
 		//审核拒绝分享对象，把分享对象在数据库中保存的checked属性切换为2，表示审核不通过
 		PreparedStatement pstm = null;
-		String sql = "update answer set checked = 2 where ansID = ?";
+		String sql = "update share set checked = 2 where shareID = ?";
 		try {
 			pstm = db.getConPst(sql);
 			//设置参数

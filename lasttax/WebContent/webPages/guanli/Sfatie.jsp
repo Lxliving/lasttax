@@ -19,7 +19,7 @@ int size=arrCons.size();
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>机构管理</title>
+<title>经验分享管理</title>
 <link rel="stylesheet" type="text/css" href="css/default.css">
 <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.3.5/themes/gray/easyui.css">
 <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.3.5/themes/icon.css" />
@@ -82,7 +82,7 @@ background-color:#1B55A9;
 			 KeptNum =arrCons.get(i).getKeptNum();
 			 ConsDetail=arrCons.get(i).getText();
 			 ConsId=arrCons.get(i).getShareID();
-			 checked=arrCons.get(i).getCherked();
+			 checked=arrCons.get(i).getChecked();
 			 String check="";
 			 if(checked==0){check="待审核";}
 			 else if(checked==1){check="审核通过";}
@@ -102,16 +102,16 @@ background-color:#1B55A9;
 			out.println("<th>"+check+"\n");
 			out.println("</th>\n");
 			out.println("<th><div class=\"shenhe\">\n");
-			 out.println("<form  id=\"submitQes\" action=\"\" method=\"post\">");
-			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"consID\" value=\""+ConsId+ "\"> \n");
+			 out.println("<form  id=\"submitQes\" action=\"shareQualify\" method=\"post\">");
+			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"shareID\" value=\""+ConsId+ "\"> \n");
 			out.println("<button type=\"submit\" class=\"shen\">审核</button><span>  </span>\n");
 			 out.println("</form></div>");
-			 out.println("<div class=\"jujue\"><form  id=\"submitQes\" action=\"\" method=\"post\">");
-			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"consID\" value=\""+ConsId+ "\"> \n");
+			 out.println("<div class=\"jujue\"><form  id=\"submitQes\" action=\"shareDisqualify\" method=\"post\">");
+			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"shareID\" value=\""+ConsId+ "\"> \n");
 			out.println("<button type=\"submit\" class=\"shen\">拒绝</button><span>  </span>\n");
 			 out.println("</form></div>");
-			out.println("<div class=\"shanchu\"><form  id=\"submitQes\" action=\"\" method=\"post\">");
-			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"consID\" value=\""+ConsId+ "\"> \n");
+			out.println("<div class=\"shanchu\"><form  id=\"submitQes\" action=\"shareDelete\" method=\"post\">");
+			out.println("<input id=\""+ConsId+ "\" type=\"hidden\" class=\"quest\" name=\"shareID\" value=\""+ConsId+ "\"> \n");
 			out.println("<button type=\"submit\" class=\"shen\">删除</button>\n");
 			 out.println("</form></div>");
 			out.println("</th></tr>\n");
